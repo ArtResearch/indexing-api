@@ -49,6 +49,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import org.json.simple.parser.ParseException;
@@ -358,7 +359,76 @@ public class Utils {
             Logger.getLogger(Utils.class.getName()).log(Level.INFO, "File processed : ", new Object[]{file});
         }
     }
+    
+    public static void merge(String json_dir, String merged_dir) {
+        new File(merged_dir).mkdirs();
+        ArrayList<String> paths = Utils.listFilesForFolder(new File(json_dir));
+        JSONArray json_array = new JSONArray();
+        JSONArray merged_array = new JSONArray();
+        for(String jsonfile:paths) {
+            JSONParser parser = new JSONParser();
+            try {
+                json_array.addAll((JSONArray) parser.parse(new FileReader(jsonfile)));
+            } catch (IOException | ParseException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        Map entries = new HashMap<String, JSONObject>();
+        
+        Iterator it = json_array.iterator();
+        
+        while(it.hasNext()){
+            JSONObject json_object = (JSONObject) it.next();
+            String key = json_object.get("uri").toString();
+            JSONObject existing = (JSONObject) entries.get(key);
+            if (existing == null) {
+                entries.put(key, json_object); // add a new json object
+//                System.out.println("KEY = " + key);
+//                System.out.println("JSON OBJECT = " + json_object.toJSONString());
+            } else {
 
+                Iterator ksitr = existing.keySet().iterator();
+                while(ksitr.hasNext()){
+                    String keyobject = (String) ksitr.next();
+                    if(!(keyobject.equals("uri") || keyobject.equals("field_score"))){
+                        if ( json_object.containsKey(keyobject)){
+//                            System.out.println("KEY 1 = " + key);
+//                            System.out.println("BEFORE JSON OBJECT 1 = " + ((JSONObject)entries.get(key)).toJSONString());
+                            JSONArray obj_array = new JSONArray();
+                            if (((JSONObject)entries.get(key)).get(keyobject) instanceof JSONArray){
+                                ((JSONArray)((JSONObject)entries.get(key)).get(keyobject)).add(json_object.get(keyobject));
+                            }else {
+                                obj_array.add(((JSONObject)entries.get(key)).get(keyobject));
+                                obj_array.add(json_object.get(keyobject));
+                                ((JSONObject)entries.get(key)).put(keyobject,obj_array);
+                            }
+                            
+                        }
+                    }
+                }
+                
+//                System.out.println("JSON OBJECT = " + ((JSONObject)entries.get(key)).toJSONString());
+            }
+        }
+        Iterator keyset = entries.keySet().iterator();
+        while(keyset.hasNext()){
+            JSONObject to_merge = (JSONObject)entries.get((String)keyset.next());
+            to_merge.put("id", to_merge.remove("uri"));
+            to_merge.remove("field_score");
+            merged_array.add(to_merge);
+        }
+        
+        try {
+            BufferedWriter writer = Files.newBufferedWriter(Paths.get(merged_dir + "/merged.json"));
+            writer.write(merged_array.toJSONString());
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     public static void change_weigths() throws FileNotFoundException, IOException, ParseException {
         String[] files = new String[3];
         ArrayList<String> temporal0 = new ArrayList();

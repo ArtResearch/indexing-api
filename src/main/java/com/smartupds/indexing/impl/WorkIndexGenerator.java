@@ -38,8 +38,11 @@ public class WorkIndexGenerator implements IndexGenerator{
 //                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
 //        Utils.downloadSubjectFields(Resources.CATEGORY_WORK_INFO,Resources.TYPE_WORK,
 //                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-//        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_FIXED,Resources.SOLR_CORE);
+
+        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
+        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
+//        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_FIXED,Resources.SOLR_CORE);
+        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED_SPLIT,Resources.SOLR_CORE);
         
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);

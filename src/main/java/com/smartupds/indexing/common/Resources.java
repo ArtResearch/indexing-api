@@ -28,6 +28,8 @@ public class Resources {
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT = FOLDER_OUTPUT_INDEXING_WORKS + "/" + Resources.CONSTRUCT;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_JSON = FOLDER_OUTPUT_INDEXING_WORKS + "/" + Resources.JSON;
+    public static final String FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED = FOLDER_OUTPUT_INDEXING_WORKS_JSON + "/" + Resources.JSON;
+    public static final String FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED_SPLIT = FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_JSON_SPLIT = FOLDER_OUTPUT_INDEXING_WORKS_JSON + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_JSON_FIXED = FOLDER_OUTPUT_INDEXING_WORKS_JSON + "/" + Resources.FIXED;
 
@@ -36,12 +38,16 @@ public class Resources {
     public static final String FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_ARTISTS_JSON = FOLDER_OUTPUT_INDEXING_ARTISTS + "/" + Resources.JSON;
     public static final String FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_SPLIT = FOLDER_OUTPUT_INDEXING_ARTISTS_JSON + "/" + Resources.SPLIT;
+    public static final String FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_MERGED = FOLDER_OUTPUT_INDEXING_ARTISTS_JSON + "/" + Resources.MERGED;
+    public static final String FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_MERGED_SPLIT = FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_MERGED + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_FIXED = FOLDER_OUTPUT_INDEXING_ARTISTS_JSON + "/" + Resources.FIXED;
 
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS = FOLDER_OUTPUT_INDEXING + "/" + Resources.PHOTOS;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT = FOLDER_OUTPUT_INDEXING_PHOTOS + "/" + Resources.CONSTRUCT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON = FOLDER_OUTPUT_INDEXING_PHOTOS + "/" + Resources.JSON;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON + "/" + Resources.MERGED;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_FIXED = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON + "/" + Resources.FIXED;
 
@@ -52,6 +58,7 @@ public class Resources {
     public static final String CONSTRUCT = "construct";
     public static final String JSON = "json";
     public static final String SPLIT = "split";
+    public static final String MERGED = "merged";
     public static final String FIXED = "fixed";
     public static final String SUBJECT = "subject";
     public static final String QUERY = "query";
