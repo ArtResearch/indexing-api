@@ -37,7 +37,7 @@ public class Main {
         try {
             createOptionsList();
             
-            args = new String[] {"-i","-type","artists","-core","testing_something"};
+//            args = new String[] {"-i","-type","artists","-core","testing_something"};
             
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);

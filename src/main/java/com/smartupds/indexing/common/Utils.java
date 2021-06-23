@@ -388,22 +388,25 @@ public class Utils {
 //                System.out.println("JSON OBJECT = " + json_object.toJSONString());
             } else {
 
-                Iterator ksitr = existing.keySet().iterator();
+                Iterator ksitr = json_object.keySet().iterator();
                 while(ksitr.hasNext()){
                     String keyobject = (String) ksitr.next();
                     if(!(keyobject.equals("uri") || keyobject.equals("field_score"))){
-                        if ( json_object.containsKey(keyobject)){
+                        JSONArray obj_array = new JSONArray();
+                        if ( existing.containsKey(keyobject)){
 //                            System.out.println("KEY 1 = " + key);
 //                            System.out.println("BEFORE JSON OBJECT 1 = " + ((JSONObject)entries.get(key)).toJSONString());
-                            JSONArray obj_array = new JSONArray();
-                            if (((JSONObject)entries.get(key)).get(keyobject) instanceof JSONArray){
-                                ((JSONArray)((JSONObject)entries.get(key)).get(keyobject)).add(json_object.get(keyobject));
+                            
+                            if (existing.get(keyobject) instanceof JSONArray){
+                                ((JSONArray)existing.get(keyobject)).add(json_object.get(keyobject));
                             }else {
-                                obj_array.add(((JSONObject)entries.get(key)).get(keyobject));
+                                obj_array.add(existing.get(keyobject));
                                 obj_array.add(json_object.get(keyobject));
-                                ((JSONObject)entries.get(key)).put(keyobject,obj_array);
+                                existing.put(keyobject,obj_array);
                             }
                             
+                        } else {
+                            existing.put(keyobject,json_object.get(keyobject));
                         }
                     }
                 }
