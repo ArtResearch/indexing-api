@@ -34,10 +34,10 @@ public class WorkIndexGenerator implements IndexGenerator{
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing arworks");
         
-//        Utils.downloadSubjectFields(Resources.CATEGORY_PRODUCTION_INFO,Resources.TYPE_WORK,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_WORK_INFO,Resources.TYPE_WORK,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_PRODUCTION_INFO,Resources.TYPE_WORK,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_WORK_INFO,Resources.TYPE_WORK,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
 
         Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
         Utils.split(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);

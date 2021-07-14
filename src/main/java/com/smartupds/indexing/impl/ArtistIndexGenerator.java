@@ -30,10 +30,10 @@ public class ArtistIndexGenerator implements IndexGenerator {
         long start = System.nanoTime();
         Logger.getLogger(ArtistIndexGenerator.class.getName()).log(Level.INFO, "START: Indexing Artists");
 
-//        Utils.downloadSubjectFields(Resources.CATEGORY_PERSON_INFO,Resources.TYPE_ARTIST,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_EXTERNAL_INFO,Resources.TYPE_ARTIST,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_PERSON_INFO,Resources.TYPE_ARTIST,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_EXTERNAL_INFO,Resources.TYPE_ARTIST,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON);
 
         Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON, Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_MERGED);
         

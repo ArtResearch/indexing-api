@@ -30,10 +30,10 @@ public class PhotoIndexGenerator  implements IndexGenerator{
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing photographs");
         
-//        Utils.downloadSubjectFields(Resources.CATEGORY_PRODUCTION_INFO,Resources.TYPE_PHOTO,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_PHOTO_INFO,Resources.TYPE_PHOTO,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_PRODUCTION_INFO,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_PHOTO_INFO,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
         
         Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
         Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
