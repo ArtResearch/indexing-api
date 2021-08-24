@@ -9,6 +9,7 @@ import com.smartupds.indexing.impl.PhotoIndexGenerator;
 import com.smartupds.indexing.common.Resources;
 import com.smartupds.indexing.common.Utils;
 import com.smartupds.indexing.impl.ArtistIndexGenerator;
+import com.smartupds.indexing.impl.PhotographersIndexGenerator;
 import com.smartupds.indexing.impl.WorkIndexGenerator;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,7 +38,7 @@ public class Main {
         try {
             createOptionsList();
             
-//            args = new String[] {"-i","-type","artists","-core","testing_something"};
+            //args = new String[] {"-i","-type","photographers"};//,"-core","testing_something"};
             
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);
@@ -74,6 +75,10 @@ public class Main {
             /*Index Resources for photos*/
             if (line.getOptionValue("t").equals("photos"))
                 PhotoIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
+ 
+            /*Index Resources for photographers*/
+            if (line.getOptionValue("t").equals("photographers"))
+                PhotographersIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
                 
         } else if(line.hasOption("w")){
              Logger.getLogger(Main.class.getName()).log(Level.INFO, "change weights Processing Started");

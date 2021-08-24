@@ -83,7 +83,10 @@ public class Utils {
             constructQuery.add(Resources.LABEL_QUERY);
 
             constructQuery.forEach(query -> {
-                QueryData downloader = new QueryData(root.elementText("endpoint"), query +"LIMIT 10\n", Resources.SELECT);
+                if (query.endsWith("}")) {
+                    query = query.substring(0, query.length() - 1).concat("filter contains(STR(?subject),\"wiki\")\n}");
+                }
+                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
 //                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
                 if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {
                     downloader.configure(root.elementText("username"), root.elementText("password"));
@@ -359,13 +362,14 @@ public class Utils {
             Logger.getLogger(Utils.class.getName()).log(Level.INFO, "File processed : ", new Object[]{file});
         }
     }
-    
-    public static void merge(String json_dir, String merged_dir) {
+
+    public static void merge(String json_dir, String merged_dir) {//(String json_dir, String merged_dir) {
         new File(merged_dir).mkdirs();
         ArrayList<String> paths = Utils.listFilesForFolder(new File(json_dir));
         JSONArray json_array = new JSONArray();
         JSONArray merged_array = new JSONArray();
-        for(String jsonfile:paths) {
+        for (String jsonfile : paths) {
+            System.out.println("Jsonfiles "+jsonfile);
             JSONParser parser = new JSONParser();
             try {
                 json_array.addAll((JSONArray) parser.parse(new FileReader(jsonfile)));
@@ -373,12 +377,11 @@ public class Utils {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+        System.out.println("Json:  "+json_array.size());
         Map entries = new HashMap<String, JSONObject>();
-        
+
         Iterator it = json_array.iterator();
-        
-        while(it.hasNext()){
+        while (it.hasNext()) {
             JSONObject json_object = (JSONObject) it.next();
             String key = json_object.get("uri").toString();
             JSONObject existing = (JSONObject) entries.get(key);
@@ -389,39 +392,39 @@ public class Utils {
             } else {
 
                 Iterator ksitr = json_object.keySet().iterator();
-                while(ksitr.hasNext()){
+                while (ksitr.hasNext()) {
                     String keyobject = (String) ksitr.next();
-                    if(!(keyobject.equals("uri") || keyobject.equals("field_score"))){
+                    if (!(keyobject.equals("uri") || keyobject.equals("field_score"))) {
                         JSONArray obj_array = new JSONArray();
-                        if ( existing.containsKey(keyobject)){
+                        if (existing.containsKey(keyobject)) {
 //                            System.out.println("KEY 1 = " + key);
 //                            System.out.println("BEFORE JSON OBJECT 1 = " + ((JSONObject)entries.get(key)).toJSONString());
-                            
-                            if (existing.get(keyobject) instanceof JSONArray){
-                                ((JSONArray)existing.get(keyobject)).add(json_object.get(keyobject));
-                            }else {
+
+                            if (existing.get(keyobject) instanceof JSONArray) {
+                                ((JSONArray) existing.get(keyobject)).add(json_object.get(keyobject));
+                            } else {
                                 obj_array.add(existing.get(keyobject));
                                 obj_array.add(json_object.get(keyobject));
-                                existing.put(keyobject,obj_array);
+                                existing.put(keyobject, obj_array);
                             }
-                            
+
                         } else {
-                            existing.put(keyobject,json_object.get(keyobject));
+                            existing.put(keyobject, json_object.get(keyobject));
                         }
                     }
                 }
-                
+
 //                System.out.println("JSON OBJECT = " + ((JSONObject)entries.get(key)).toJSONString());
             }
         }
         Iterator keyset = entries.keySet().iterator();
-        while(keyset.hasNext()){
-            JSONObject to_merge = (JSONObject)entries.get((String)keyset.next());
+        while (keyset.hasNext()) {
+            JSONObject to_merge = (JSONObject) entries.get((String) keyset.next());
             to_merge.put("id", to_merge.remove("uri"));
             to_merge.remove("field_score");
             merged_array.add(to_merge);
         }
-        
+
         try {
             BufferedWriter writer = Files.newBufferedWriter(Paths.get(merged_dir + "/merged.json"));
             writer.write(merged_array.toJSONString());
@@ -429,30 +432,25 @@ public class Utils {
         } catch (IOException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     public static void change_weigths() throws FileNotFoundException, IOException, ParseException {
-        String[] files = new String[3];
+        String[] files = new String[1];
         ArrayList<String> temporal0 = new ArrayList();
-        ArrayList<String> temporal1 = new ArrayList();
-        ArrayList<String> temporal2 = new ArrayList();
+//        ArrayList<String> temporal1 = new ArrayList();
+//        ArrayList<String> temporal2 = new ArrayList();
         paths.add(temporal0);
-        paths.add(temporal1);
-        paths.add(temporal2);
+//        paths.add(temporal1);
+//        paths.add(temporal2);
 
-//        files[0] = "C:\\Users\\kapar\\Documents\\NetBeansProjects\\indexing-api\\src\\main\\resources\\artist_term_and_weigths.txt";
-//        files[1] = "C:\\Users\\kapar\\Documents\\NetBeansProjects\\indexing-api\\src\\main\\resources\\artworks_term_and_weigths.txt";
-//        files[2] = "C:\\Users\\kapar\\Documents\\NetBeansProjects\\indexing-api\\src\\main\\resources\\photos_term_and_weigths.txt";
-
-        files[0] = Resources.ARTIST_TERM_AND_WEIGHTS_FILE;
-        files[1] = Resources.ARTWORKS_TERM_AND_WEIGHTS_FILE;
-        files[2] = Resources.PHOTOS_TERM_AND_WEIGHTS_FILE;
-
-
-        listofPaths(new File(Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_SPLIT), 0);
-        listofPaths(new File(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_SPLIT), 1);
-        listofPaths(new File(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT), 2);
+//        files[0] = Resources.ARTIST_TERM_AND_WEIGHTS_FILE;
+//        files[1] = Resources.ARTWORKS_TERM_AND_WEIGHTS_FILE;
+//        files[2] = Resources.PHOTOS_TERM_AND_WEIGHTS_FILE;
+//        listofPaths(new File(Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_SPLIT), 0);
+//        listofPaths(new File(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_SPLIT), 1);
+//        listofPaths(new File(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT), 2);
+        listofPaths(new File(Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_SPLIT), 0);
         for (int k = 0; k < files.length; k++) {
             termsWeights.clear();
             Scanner sc = new Scanner(new File(files[k]));
@@ -467,14 +465,15 @@ public class Utils {
                 }
             }
             JSONParser parser = new JSONParser();
-            String fixed_path = "";// "C:\\Users\\kapar\\Documents\\NetBeansProjects\\change_weights\\workspace\\Indexing\\photos\\json\\fixed\\";
-            if (k == 0) {
-                fixed_path = Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_FIXED;
-            } else if (k == 1) {
-                fixed_path = Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_FIXED;
-            } else {
-                fixed_path = Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_FIXED;
-            }
+            String fixed_path = "";
+//            if (k == 0) {
+//                fixed_path = Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_FIXED;
+//            } else if (k == 1) {
+//                fixed_path = Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_FIXED;
+//            } else {
+//                fixed_path = Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_FIXED;
+//            }
+            fixed_path = Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_FIXED;
             File newfolder = new File(fixed_path);
             if (newfolder.isDirectory()) {
                 String[] entries = newfolder.list();
@@ -486,7 +485,7 @@ public class Utils {
                 //Creating the directory
                 boolean bool = newfolder.mkdir();
                 if (bool) {
-                    System.out.println("Directory "+ fixed_path +" created successfully");
+                    System.out.println("Directory " + fixed_path + " created successfully");
                 } else {
                     System.out.println("Sorry couldn’t create specified directory");
                 }
@@ -495,7 +494,6 @@ public class Utils {
                 String output_path = fixed_path;
                 System.out.println("->" + str);
                 String[] first_split = str.split("/");
-                
 
 //            create fixxed file
                 String[] dot_split = (first_split[first_split.length - 1]).split("\\.");
@@ -503,19 +501,18 @@ public class Utils {
                 String field_name = "";
                 JSONArray a = (JSONArray) parser.parse(new FileReader(str));
                 for (Object o : a) {
-                        JSONObject person = (JSONObject) o;
-                        for(String key:termsWeights.keySet()){
-                            if(person.containsKey(key)){
-                                //System.out.println("found");
-                                field_name=key;
-                                break;
-                            }
+                    JSONObject person = (JSONObject) o;
+                    for (String key : termsWeights.keySet()) {
+                        if (person.containsKey(key)) {
+                            //System.out.println("found");
+                            field_name = key;
+                            break;
                         }
                     }
-                
-                
-                System.out.println("--------------"+first_split[first_split.length - 1]);
-                output_path = output_path +"/"+ first_split[first_split.length - 1];
+                }
+
+                System.out.println("--------------" + first_split[first_split.length - 1]);
+                output_path = output_path + "/" + first_split[first_split.length - 1];
 //                for (int i = 0; i < _split.length - 1; i++) {
 //                    if (!_split[i].equals("split")) {
 //                        if (i == 0) {
@@ -533,7 +530,7 @@ public class Utils {
                         JSONObject person = (JSONObject) o;
                         String name = (String) person.get(field_name);
                         if (name == null) {
-                            System.out.println("name is null for field_name= "+field_name);
+                            System.out.println("name is null for field_name= " + field_name);
                         } else {
                             String score = (String) person.get("field_score");
                             if (termsWeights.containsKey(field_name)) {
@@ -548,30 +545,26 @@ public class Utils {
                     }
 
                 } else {
-                    System.out.println("couldn't find the term "+field_name+"in terms and weights File in k="+k);
+                    System.out.println("couldn't find the term " + field_name + "in terms and weights File in k=" + k);
                 }
 
             }
-//            for (String str : termsWeights.keySet()) {
-//                //System.out.println(str + " --- " + termsWeights.get(str));
-//            }
-//            System.out.println("size " + termsWeights.size());
-//            System.out.println("counter " + counter);
+
         }
         paths.clear();
         termsWeights.clear();
     }
 
-   private static void listofPaths(final File folder, int type) {
-       System.out.println("-> "+folder.getAbsolutePath());
-       if(folder.exists()){
-           System.out.println("-> "+folder.getAbsolutePath());
-           System.out.println("exists");
-           if(folder.isDirectory()){
-               System.out.println("is Directory");
-           }
-           System.out.println("-> "+folder.getAbsolutePath());
-       }
+    private static void listofPaths(final File folder, int type) {
+        System.out.println("-> " + folder.getAbsolutePath());
+        if (folder.exists()) {
+            System.out.println("-> " + folder.getAbsolutePath());
+            System.out.println("exists");
+            if (folder.isDirectory()) {
+                System.out.println("is Directory");
+            }
+            System.out.println("-> " + folder.getAbsolutePath());
+        }
         for (final File fileEntry : folder.listFiles()) {
             if (fileEntry.getName().contains("desktop.ini")) {
                 //ignore
@@ -584,5 +577,5 @@ public class Utils {
             }
         }
     }
-    
+
 }

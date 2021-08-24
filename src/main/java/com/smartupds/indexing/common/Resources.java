@@ -18,12 +18,15 @@ public class Resources {
     public static final String WORKS = "works";
     public static final String ARTISTS = "artists";
     public static final String PHOTOS = "photos";
+    public static final String PHOTOGRAPHERS = "photographers";
     public static final String ARTIST_TERM_AND_WEIGHTS =  "artist_term_and_weigths.txt";
     public static final String ARTWORKS_TERM_AND_WEIGHTS=  "artworks_term_and_weigths.txt";
     public static final String PHOTOS_TERM_AND_WEIGHTS =  "photos_term_and_weigths.txt";
+    public static final String PHOTOGRAPHERS_TERM_AND_WEIGHTS =  "photographers_term_and_weigths.txt";
     public static final String ARTIST_TERM_AND_WEIGHTS_FILE= FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.ARTIST_TERM_AND_WEIGHTS;
     public static final String ARTWORKS_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.ARTWORKS_TERM_AND_WEIGHTS;
     public static final String PHOTOS_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.PHOTOS_TERM_AND_WEIGHTS;
+    public static final String PHOTOGRAPHERS_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.PHOTOGRAPHERS_TERM_AND_WEIGHTS;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS = FOLDER_OUTPUT_INDEXING + "/" + Resources.WORKS;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT = FOLDER_OUTPUT_INDEXING_WORKS + "/" + Resources.CONSTRUCT;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT + "/" + Resources.SPLIT;
@@ -50,6 +53,15 @@ public class Resources {
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_FIXED = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON + "/" + Resources.FIXED;
+    
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS = FOLDER_OUTPUT_INDEXING + "/" + Resources.PHOTOGRAPHERS;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS + "/" + Resources.CONSTRUCT;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT + "/" + Resources.SPLIT;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS + "/" + Resources.JSON;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON + "/" + Resources.MERGED;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED + "/" + Resources.SPLIT;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON + "/" + Resources.SPLIT;
+    public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_FIXED = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON + "/" + Resources.FIXED;
 
     public static final String CONFIGURATION_FILE = "./src/main/resources/authentication.xml";
 
@@ -72,9 +84,12 @@ public class Resources {
     public static final String TYPE_WORK = "https://pharos.artresearch.net/resource/fc/work";
     public static final String TYPE_ARTIST = "https://pharos.artresearch.net/resource/fc/artist";
     public static final String TYPE_PHOTO = "https://pharos.artresearch.net/resource/custom/fc/photo";
+    public static final String TYPE_PHOTOGRAPHERS = "https://pharos.artresearch.net/resource/fc/photographer";
+    
     public static final String INDEX_ARTWORKS = "artworks";
     public static final String INDEX_ARTISTS = "artists";
     public static final String INDEX_PHOTOS = "photos";
+    public static final String INDEX_PHOTOGRAPHERS = "photographers";
     //DATATYPE 
     public static final String XSD_STRING = "http://www.w3.org/2001/XMLSchema#string";
     public static final String XSD_VALUE = "http://www.w3.org/2001/XMLSchema#anyURI";
@@ -87,6 +102,7 @@ public class Resources {
     public static final String CATEGORY_WORK_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/work_info";
     public static final String CATEGORY_PERSON_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/person_info";
     public static final String CATEGORY_EXTERNAL_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/external_info";
+    public static final String CATEGORY_REPOSITORY_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/repository_info";
 
     //EXTENSIONS
     public static final String CSV = ".csv";
