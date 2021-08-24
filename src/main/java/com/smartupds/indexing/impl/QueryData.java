@@ -213,7 +213,7 @@ public class QueryData implements Downloader {
         pattern = pattern.replaceAll("(SELECT|select).*(?=WHERE|where)",Resources.setConstructQ(order,field_name,additionalSubjects));
         String cunstructpattern = Resources.PREFIXES.concat(pattern);
         cunstructpattern = cunstructpattern.replaceAll("(graph|GRAPH)\\s*\\?graph[\\s\\t\\n]*\\{", " ");
-        cunstructpattern = cunstructpattern.replaceAll("\\}[\\s\\t\\n]*\\?(graph|subject)\\s+<https:\\/\\/pharos\\.artresearch\\.net\\/custom\\/has_provider>\\s+\\?prov[a-z]+\\s*\\.[\\s\\t\\n]*\\?prov[a-z]+\\s+rdfs:label\\s+\\?prov[a-z]+Label\\s*\\.", " ");
+        cunstructpattern = cunstructpattern.replaceAll("\\}[\\s\\t\\n]*\\?(graph|subject)\\s+<https:\\/\\/pharos\\.artresearch\\.net\\/custom\\/has_provider>\\s+\\?prov[a-z]*\\s*\\.[\\s\\t\\n]*\\?prov[a-z]*\\s+rdfs:label\\s+\\?prov[a-z]*Label\\s*\\.", " ");
         return cunstructpattern;
     }
     
@@ -225,7 +225,7 @@ public class QueryData implements Downloader {
         pattern = pattern.replaceAll("(SELECT|select).*(?=WHERE|where)",Resources.setConstructQ(order, field_name, additionalSubjects));
         String cunstructpattern = Resources.PREFIXES.concat(pattern);
         cunstructpattern = cunstructpattern.replaceAll("(graph|GRAPH)\\s*\\?graph[\\s\\t\\n]*\\{", " ");
-        cunstructpattern = cunstructpattern.replaceAll("\\}[\\s\\t\\n]*\\?(graph|subject)\\s+<https:\\/\\/pharos\\.artresearch\\.net\\/custom\\/has_provider>\\s+\\?prov[a-z]+\\s*\\.[\\s\\t\\n]*\\?prov[a-z]+\\s+rdfs:label\\s+\\?prov[a-z]+Label\\s*\\.", " ");
+        cunstructpattern = cunstructpattern.replaceAll("\\}[\\s\\t\\n]*\\?(graph|subject)\\s+<https:\\/\\/pharos\\.artresearch\\.net\\/custom\\/has_provider>\\s+\\?prov[a-z]*\\s*\\.[\\s\\t\\n]*\\?prov[a-z]*\\s+rdfs:label\\s+\\?prov[a-z]*Label\\s*\\.", " ");
         return cunstructpattern;
     }
 }
