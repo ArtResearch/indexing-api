@@ -41,7 +41,7 @@ public class Main {
             
 //            args = new String[] {"-i","-type","photographers","-core","photographers"};
 
-             args = new String[] {"-i","-type","repositories"};
+ //            args = new String[] {"-i","-type","repositories"};
 
             
             CommandLine line = PARSER.parse(options, args);
