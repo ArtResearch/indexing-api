@@ -74,20 +74,24 @@ public class Utils {
 
     public static void downloadSubjectFields(String category, String type, File configurationfile, String constructFolder, String indexfolder) {
         try {
-            ArrayList<String> constructQuery = extractFieldPatternsByType(category, type, configurationfile);
+            ArrayList<String> constructQuery = null;
+            if (type.equals(Resources.TYPE_PHOTOGRAPHERS)){
+//                constructQuery = extractFieldPatternsByType(category, type, configurationfile, "FILTER CONTAINS(STR(?subject),\"wiki\")");
+                constructQuery = extractFieldPatternsByType(category, type, configurationfile, "FILTER (!CONTAINS(STR(?subject),\"nypl\"))");
+            } else
+                constructQuery = extractFieldPatternsByType(category, type, configurationfile, null);
             SAXReader reader = new SAXReader();
             reader.setEncoding("UTF-8");
             Document doc = reader.read(new FileInputStream(configurationfile));
             Element root = doc.getRootElement();
-            Resources.setLabelQuery(type);
-            constructQuery.add(Resources.LABEL_QUERY);
-
+            if (!type.equals(Resources.TYPE_PHOTOGRAPHERS)){
+                Resources.setLabelQuery(type,null);
+                constructQuery.add(Resources.LABEL_QUERY);
+            }
             constructQuery.forEach(query -> {
-                if (query.endsWith("}")) {
-                    query = query.substring(0, query.length() - 1).concat("filter contains(STR(?subject),\"wiki\")\n}");
-                }
-                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "limit 10\n", Resources.SELECT);
-//                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
+//                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "LIMIT 10\n", Resources.SELECT);
+                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
+
                 if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {
                     downloader.configure(root.elementText("username"), root.elementText("password"));
                 }
@@ -99,7 +103,7 @@ public class Utils {
         }
     }
 
-    public static ArrayList<String> extractFieldPatternsByType(String category, String type, File configurationfile) {
+    public static ArrayList<String> extractFieldPatternsByType(String category, String type, File configurationfile,String addfilter) {
         ArrayList<String> list = new ArrayList<>();
         try {
             String patterns = "SELECT ?query ?datatype ?order ?name WHERE{    \n"
@@ -119,7 +123,7 @@ public class Utils {
             if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {
                 downloader.configure(root.elementText("username"), root.elementText("password"));
             }
-            list = downloader.downloadPatterns(type);
+            list = downloader.downloadPatterns(type,addfilter);
         } catch (FileNotFoundException | DocumentException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -369,7 +373,7 @@ public class Utils {
         JSONArray json_array = new JSONArray();
         JSONArray merged_array = new JSONArray();
         for (String jsonfile : paths) {
-            System.out.println("Jsonfiles "+jsonfile);
+//            System.out.println("Jsonfiles "+jsonfile);
             JSONParser parser = new JSONParser();
             try {
                 json_array.addAll((JSONArray) parser.parse(new FileReader(jsonfile)));

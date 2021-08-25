@@ -40,7 +40,9 @@ public class Main {
             createOptionsList();
             
 //            args = new String[] {"-i","-type","photographers","-core","photographers"};
+
              args = new String[] {"-i","-type","repositories"};
+
             
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);

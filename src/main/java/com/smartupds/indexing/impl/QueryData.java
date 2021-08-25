@@ -100,7 +100,7 @@ public class QueryData implements Downloader {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ArrayList<String> downloadPatterns(String type) {
+    public ArrayList<String> downloadPatterns(String type,String addfilter) {
         ArrayList<String> list = new  ArrayList<>();
         Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Endpoint : {0}", repo.toString());
         Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Initializing repository");
@@ -119,10 +119,16 @@ public class QueryData implements Downloader {
             String datatype = set.getBinding(Resources.DATATYPE).getValue().stringValue();
             String order = set.getBinding(Resources.ORDER).getValue().stringValue();
             String field_name = set.getBinding(Resources.NAME).getValue().stringValue()
-                    .trim().replace("-", "").replaceAll("(\\s+)", "_").toLowerCase();
+                    .trim().replace("-", "").replace("/", "").replaceAll("(\\s+)", "_").toLowerCase();
             if (!field_name.equals("types")){
                 String subjectType = "\t?subject a <" + type +">.\n";
+                if (addfilter!=null){
+                    subjectType = subjectType +"\n"+ addfilter;
+                }
                 String subjectTypeAdditional = "\t?subject owl:sameAs ?subject_p.\n\t?subject_p a <" + type +">.\n";
+                if (addfilter!=null){
+                    subjectTypeAdditional = subjectTypeAdditional +"\n"+ addfilter.replace("subject", "subject_p");
+                }
                 if (datatype.equals(Resources.XSD_STRING)){
                     list.add(constructPattern( pattern, subjectType, order, field_name, false));
                     list.add(constructPattern( pattern, subjectTypeAdditional, order, field_name, true));

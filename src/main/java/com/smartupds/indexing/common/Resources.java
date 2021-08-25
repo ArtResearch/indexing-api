@@ -183,8 +183,20 @@ public class Resources {
         SOLR_CORE = core_name;
     }
 
-    public static void setLabelQuery(String type) {
-        LABEL_QUERY = "CONSTRUCT {\n"
+    public static void setLabelQuery(String type, String addFilter) {
+        if (addFilter!=null){
+            LABEL_QUERY = "CONSTRUCT {\n"
+                    + "	?subject rdfs:label ?value.\n"
+                    + "	?subject <http://www.artresearch.net/custom/fieldLabel> \"title\".\n"
+                    + "	?subject <http://www.researchspace.org/resource/system/fields/order> \"100\".\n"
+                    + "}WHERE \n"
+                    + "{	\n"
+                    + "  ?subject a <" + type + ">.\n"
+                    + "  ?subject rdfs:label ?value.\n"
+                    + "\t" +addFilter + "\n"
+                    + "}";
+        } else {
+            LABEL_QUERY = "CONSTRUCT {\n"
                 + "	?subject rdfs:label ?value.\n"
                 + "	?subject <http://www.artresearch.net/custom/fieldLabel> \"title\".\n"
                 + "	?subject <http://www.researchspace.org/resource/system/fields/order> \"100\".\n"
@@ -193,5 +205,7 @@ public class Resources {
                 + "  ?subject a <" + type + ">.\n"
                 + "  ?subject rdfs:label ?value.\n"
                 + "}";
+        
+        }
     }
 }
