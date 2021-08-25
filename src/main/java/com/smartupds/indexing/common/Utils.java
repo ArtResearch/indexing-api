@@ -83,7 +83,10 @@ public class Utils {
             reader.setEncoding("UTF-8");
             Document doc = reader.read(new FileInputStream(configurationfile));
             Element root = doc.getRootElement();
-            Resources.setLabelQuery(type);
+            if (type.equals(Resources.TYPE_PHOTOGRAPHERS))
+                Resources.setLabelQuery(type,"FILTER CONTAINS(STR(?subject),\"wiki\")");
+            else
+                Resources.setLabelQuery(type,null);
             constructQuery.add(Resources.LABEL_QUERY);
 
             constructQuery.forEach(query -> {
