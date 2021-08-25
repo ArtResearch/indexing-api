@@ -58,8 +58,8 @@ public class QueryData implements Downloader {
     @Override
     public void download(){
         Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Endpoint : {0}", repo.toString());
-        new File(Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS).mkdirs();
-        try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS
+        new File(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES).mkdirs();
+        try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES
                 +"/"+Resources.SUBJECT + Resources.CSV), "UTF-8")) {
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Initializing repository");
             repo.initialize();
@@ -77,7 +77,7 @@ public class QueryData implements Downloader {
                         writer.append(it.next().getValue()+"\t");
                     writer.append("\n");
                 }
-                Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS+"/"+Resources.SUBJECT));
+                Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES+"/"+Resources.SUBJECT));
                 Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Shutting down repository");
                 writer.close();
             }

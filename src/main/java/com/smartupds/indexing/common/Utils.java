@@ -86,7 +86,7 @@ public class Utils {
                 if (query.endsWith("}")) {
                     query = query.substring(0, query.length() - 1).concat("filter contains(STR(?subject),\"wiki\")\n}");
                 }
-                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
+                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "limit 10\n", Resources.SELECT);
 //                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
                 if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {
                     downloader.configure(root.elementText("username"), root.elementText("password"));

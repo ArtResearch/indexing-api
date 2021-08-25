@@ -12,21 +12,25 @@ package com.smartupds.indexing.common;
 public class Resources {
 
     public static final String FOLDER_WORKSPACE = "workspace";
-    public static final String FOLDER_TERMS_AND_WEIGHTS="terms_and_weights"; 
+    public static final String FOLDER_TERMS_AND_WEIGHTS = "terms_and_weights";
     public static final String FOLDER_OUTPUT = FOLDER_WORKSPACE + "/" + "Output";
     public static final String FOLDER_OUTPUT_INDEXING = FOLDER_OUTPUT + "/" + "Indexing";
     public static final String WORKS = "works";
     public static final String ARTISTS = "artists";
     public static final String PHOTOS = "photos";
     public static final String PHOTOGRAPHERS = "photographers";
-    public static final String ARTIST_TERM_AND_WEIGHTS =  "artist_term_and_weigths.txt";
-    public static final String ARTWORKS_TERM_AND_WEIGHTS=  "artworks_term_and_weigths.txt";
-    public static final String PHOTOS_TERM_AND_WEIGHTS =  "photos_term_and_weigths.txt";
-    public static final String PHOTOGRAPHERS_TERM_AND_WEIGHTS =  "photographers_term_and_weigths.txt";
-    public static final String ARTIST_TERM_AND_WEIGHTS_FILE= FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.ARTIST_TERM_AND_WEIGHTS;
+    public static final String REPOSITORIES = "repositories";
+    public static final String ARTIST_TERM_AND_WEIGHTS = "artist_term_and_weigths.txt";
+    public static final String ARTWORKS_TERM_AND_WEIGHTS = "artworks_term_and_weigths.txt";
+    public static final String PHOTOS_TERM_AND_WEIGHTS = "photos_term_and_weigths.txt";
+    public static final String PHOTOGRAPHERS_TERM_AND_WEIGHTS = "photographers_term_and_weigths.txt";
+    public static final String REPOSITORIES_TERM_AND_WEIGHTS = "repositories_term_and_weigths.txt";
+    public static final String ARTIST_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.ARTIST_TERM_AND_WEIGHTS;
     public static final String ARTWORKS_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.ARTWORKS_TERM_AND_WEIGHTS;
     public static final String PHOTOS_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.PHOTOS_TERM_AND_WEIGHTS;
     public static final String PHOTOGRAPHERS_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.PHOTOGRAPHERS_TERM_AND_WEIGHTS;
+    public static final String REPOSITORIES_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.REPOSITORIES_TERM_AND_WEIGHTS;
+  
     public static final String FOLDER_OUTPUT_INDEXING_WORKS = FOLDER_OUTPUT_INDEXING + "/" + Resources.WORKS;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT = FOLDER_OUTPUT_INDEXING_WORKS + "/" + Resources.CONSTRUCT;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT + "/" + Resources.SPLIT;
@@ -53,7 +57,7 @@ public class Resources {
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_FIXED = FOLDER_OUTPUT_INDEXING_PHOTOS_JSON + "/" + Resources.FIXED;
-    
+
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS = FOLDER_OUTPUT_INDEXING + "/" + Resources.PHOTOGRAPHERS;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS + "/" + Resources.CONSTRUCT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT + "/" + Resources.SPLIT;
@@ -62,6 +66,15 @@ public class Resources {
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_SPLIT = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON + "/" + Resources.SPLIT;
     public static final String FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_FIXED = FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON + "/" + Resources.FIXED;
+
+    public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES = FOLDER_OUTPUT_INDEXING + "/" + Resources.REPOSITORIES;
+    public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES_CONSTRUCT = FOLDER_OUTPUT_INDEXING_REPOSITORIES + "/" + Resources.CONSTRUCT;
+    public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_REPOSITORIES_CONSTRUCT + "/" + Resources.SPLIT;
+    public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON = FOLDER_OUTPUT_INDEXING_REPOSITORIES + "/" + Resources.JSON;
+    public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED = FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON + "/" + Resources.MERGED;
+    public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED_SPLIT = FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED + "/" + Resources.SPLIT;
+    public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_SPLIT = FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON + "/" + Resources.SPLIT;
+    public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_FIXED = FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON + "/" + Resources.FIXED;
 
     public static final String CONFIGURATION_FILE = "./src/main/resources/authentication.xml";
 
@@ -85,11 +98,15 @@ public class Resources {
     public static final String TYPE_ARTIST = "https://pharos.artresearch.net/resource/fc/artist";
     public static final String TYPE_PHOTO = "https://pharos.artresearch.net/resource/custom/fc/photo";
     public static final String TYPE_PHOTOGRAPHERS = "https://pharos.artresearch.net/resource/fc/photographer";
-    
+    public static final String TYPE_REPOSITORIES = "https://pharos.artresearch.net/resource/fc/institution";
+    public static final String TYPE_ACTOR = "http://www.cidoc-crm.org/cidoc-crm/E39_Actor";
+
     public static final String INDEX_ARTWORKS = "artworks";
     public static final String INDEX_ARTISTS = "artists";
     public static final String INDEX_PHOTOS = "photos";
     public static final String INDEX_PHOTOGRAPHERS = "photographers";
+    public static final String INDEX_REPOSITORIES = "repositories";
+    public static final String INDEX_ACTOR = "actor";
     //DATATYPE 
     public static final String XSD_STRING = "http://www.w3.org/2001/XMLSchema#string";
     public static final String XSD_VALUE = "http://www.w3.org/2001/XMLSchema#anyURI";
