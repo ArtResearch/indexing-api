@@ -76,23 +76,19 @@ public class Utils {
         try {
             ArrayList<String> constructQuery = null;
             if (type.equals(Resources.TYPE_PHOTOGRAPHERS)){
-                constructQuery = extractFieldPatternsByType(category, type, configurationfile, "FILTER CONTAINS(STR(?subject),\"wiki\")");
+//                constructQuery = extractFieldPatternsByType(category, type, configurationfile, "FILTER CONTAINS(STR(?subject),\"wiki\")");
+                constructQuery = extractFieldPatternsByType(category, type, configurationfile, "FILTER (!CONTAINS(STR(?subject),\"nypl\"))");
             } else
                 constructQuery = extractFieldPatternsByType(category, type, configurationfile, null);
             SAXReader reader = new SAXReader();
             reader.setEncoding("UTF-8");
             Document doc = reader.read(new FileInputStream(configurationfile));
             Element root = doc.getRootElement();
-            if (type.equals(Resources.TYPE_PHOTOGRAPHERS))
-                Resources.setLabelQuery(type,"FILTER CONTAINS(STR(?subject),\"wiki\")");
-            else
+            if (!type.equals(Resources.TYPE_PHOTOGRAPHERS)){
                 Resources.setLabelQuery(type,null);
-            constructQuery.add(Resources.LABEL_QUERY);
-
+                constructQuery.add(Resources.LABEL_QUERY);
+            }
             constructQuery.forEach(query -> {
-//                if (query.endsWith("}")) {
-//                    query = query.substring(0, query.length() - 1).concat("filter (!contains(STR(?subject),\"nypl\"))\n}");
-//                }
 //                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "LIMIT 10\n", Resources.SELECT);
                 QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
                 if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {

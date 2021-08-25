@@ -84,8 +84,8 @@ public class Resources {
     public static final String TYPE_WORK = "https://pharos.artresearch.net/resource/fc/work";
     public static final String TYPE_ARTIST = "https://pharos.artresearch.net/resource/fc/artist";
     public static final String TYPE_PHOTO = "https://pharos.artresearch.net/resource/custom/fc/photo";
-    public static final String TYPE_PHOTOGRAPHERS = "https://pharos.artresearch.net/resource/fc/photographer";
-//    public static final String TYPE_PHOTOGRAPHERS = "https://pharos.artresearch.net/resource/custom/fc/photographer";
+//    public static final String TYPE_PHOTOGRAPHERS = "https://pharos.artresearch.net/resource/fc/photographer";
+    public static final String TYPE_PHOTOGRAPHERS = "https://pharos.artresearch.net/resource/custom/fc/photographer";
     
     public static final String INDEX_ARTWORKS = "artworks";
     public static final String INDEX_ARTISTS = "artists";
