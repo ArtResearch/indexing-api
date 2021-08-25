@@ -38,7 +38,7 @@ public class RepositoriesIndexGenerator {
         Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED);
 
         Utils.split(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED);
-        //Utils.updateSolrIndex(Resources.TYPE_REPOSITORIES,Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED_SPLIT, Resources.SOLR_CORE);
+        Utils.updateSolrIndex(Resources.TYPE_REPOSITORIES,Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED_SPLIT, Resources.SOLR_CORE);
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
         Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Indexing repositories in {0} secs", time);
