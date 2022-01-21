@@ -29,14 +29,14 @@ public class PhotoIndexGenerator  implements IndexGenerator{
     public void indexResources(String core_name) {
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing photographs");
-//        
-//        Utils.downloadSubjectFields(Resources.CATEGORY_PRODUCTION_INFO,Resources.TYPE_PHOTO,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_PHOTO_INFO,Resources.TYPE_PHOTO,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
-//        
-//        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
-//        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
+        
+        Utils.downloadSubjectFields(Resources.CATEGORY_PRODUCTION_INFO,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_PHOTO_INFO,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        
+        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
+        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
 //        Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT,Resources.SOLR_CORE);
         Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED_SPLIT,Resources.SOLR_CORE);
         

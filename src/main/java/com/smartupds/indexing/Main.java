@@ -38,9 +38,12 @@ public class Main {
     public static void main(String[] args) throws IOException{
         try {
             createOptionsList();
+            
 //            args = new String[] {"-i","-type","photographers","-core","photographers"};
-//            args = new String[] {"-i","-type","repositories"};
-            args = new String[] {"-i","-type","two-reindex"};
+
+ //            args = new String[] {"-i","-type","repositories"};
+
+            
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);
         } catch (ParseException ex) {
@@ -84,14 +87,6 @@ public class Main {
              /*Index Resources for repositories*/
             if (line.getOptionValue("t").equals("repositories"))
                 RepositoriesIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
-            
-            /*Index Resources for work*/
-            if (line.getOptionValue("t").equals("two-reindex")){
-                Resources.setSolrCore("artworks_artresearch");
-                WorkIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
-                Resources.setSolrCore("photos_artresearch");
-                PhotoIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
-            }
                 
         } else if(line.hasOption("w")){
              Logger.getLogger(Main.class.getName()).log(Level.INFO, "change weights Processing Started");
