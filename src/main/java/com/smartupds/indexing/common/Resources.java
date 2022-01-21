@@ -94,11 +94,11 @@ public class Resources {
     public static final String ORDER = "order";
     public static final String NAME = "name";
     //TYPES
-    public static final String TYPE_WORK = "https://pharos.artresearch.net/resource/fc/work";
-    public static final String TYPE_ARTIST = "https://pharos.artresearch.net/resource/fc/artist";
-    public static final String TYPE_PHOTO = "https://pharos.artresearch.net/resource/custom/fc/photo";
-    public static final String TYPE_PHOTOGRAPHERS = "https://pharos.artresearch.net/resource/fc/photographer";
-    public static final String TYPE_REPOSITORIES = "https://pharos.artresearch.net/resource/fc/institution";
+    public static final String TYPE_WORK = "https://artresearch.net/resource/fc/work";
+    public static final String TYPE_ARTIST = "https://artresearch.net/resource/fc/artist";
+    public static final String TYPE_PHOTO = "https://artresearch.net/resource/custom/fc/photo";
+    public static final String TYPE_PHOTOGRAPHERS = "https://artresearch.net/resource/fc/photographer";
+    public static final String TYPE_REPOSITORIES = "https://artresearch.net/resource/fc/institution";
     public static final String TYPE_ACTOR = "http://www.cidoc-crm.org/cidoc-crm/E39_Actor";
 
     public static final String INDEX_ARTWORKS = "artworks";
@@ -113,7 +113,7 @@ public class Resources {
     // PROPERTIEs
     public static final String RDFS_LABEL = "http://www.w3.org/2000/01/rdf-schema#label";
     //CATEGORIES
-    public static final String CATEGORY_WORK = "https://pharos.artresearch.net/category/work";
+    public static final String CATEGORY_WORK = "https://artresearch.net/category/work";
     public static final String CATEGORY_PRODUCTION_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/production_info";
     public static final String CATEGORY_PHOTO_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/photograph_info";
     public static final String CATEGORY_WORK_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/work_info";
