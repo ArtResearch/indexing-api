@@ -39,11 +39,14 @@ public class Main {
         try {
             createOptionsList();
             
-//            args = new String[] {"-i","-type","photographers","-core","photographers"};
+//            args = new String[] {"-i","-type","photographers"};
+//            args = new String[] {"-i","-type","photos"};
+//            args = new String[] {"-i","-type","repositories"};
 
- //            args = new String[] {"-i","-type","repositories"};
+            args = new String [] {"-i" , "-type", "artworks"};
+//            args = new String [] {"-i", "-type", "artists", "-core", "artists"};
+//            args = new String [] {"-i", "-type", "artists", "-core", "artists"};
 
-            
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);
         } catch (ParseException ex) {
@@ -55,7 +58,7 @@ public class Main {
         Option index = new Option("i", "index", false,"Flag to index data.");
         Option type = new Option("t", "type", true,"Type to index: -t [type].");
         Option core = new Option("c", "core", true,"Core to add data: -c [core_name].");
-        Option weights=new Option("w", "weights",false,"Flag to change weigths.");
+        Option weights = new Option("w", "weights", false, "Flag to change weigths.");
         options.addOption(index)
                .addOption(type)
                .addOption(core)

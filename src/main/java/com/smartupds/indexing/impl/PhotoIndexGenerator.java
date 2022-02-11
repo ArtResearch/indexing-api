@@ -30,15 +30,26 @@ public class PhotoIndexGenerator  implements IndexGenerator{
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing photographs");
         
-        Utils.downloadSubjectFields(Resources.CATEGORY_PRODUCTION_INFO,Resources.TYPE_PHOTO,
-                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
         Utils.downloadSubjectFields(Resources.CATEGORY_PHOTO_INFO,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_PHOTOGRAPHER ,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_PHYSICAL_PROPERTIES ,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_PROVENANCE ,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_SUBJECTS ,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_DATING ,Resources.TYPE_PHOTO,
+                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
+        Utils.downloadSubjectFields(Resources.CATEGORY_NOTES ,Resources.TYPE_PHOTO,
                 this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON);
         
         Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
         Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
+        
 //        Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT,Resources.SOLR_CORE);
-        Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED_SPLIT,Resources.SOLR_CORE);
+//        Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED_SPLIT,Resources.SOLR_CORE);
         
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);

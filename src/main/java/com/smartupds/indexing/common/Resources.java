@@ -120,7 +120,17 @@ public class Resources {
     public static final String CATEGORY_PERSON_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/person_info";
     public static final String CATEGORY_EXTERNAL_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/external_info";
     public static final String CATEGORY_REPOSITORY_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/repository_info";
-
+    public static final String CATEGORY_PERSON_RELATIONSHIPS = "http://www.researchspace.org/ontologies/platform/FieldCategories/person_relationships";
+    public static final String CATEGORY_PLACE_INFO = "http://www.researchspace.org/ontologies/platform/FieldCategories/place_info";
+    public static final String CATEGORY_PHOTOGRAPHER = "http://www.researchspace.org/ontologies/platform/FieldCategories/photographer";
+    public static final String CATEGORY_PHYSICAL_PROPERTIES = "http://www.researchspace.org/ontologies/platform/FieldCategories/physical_properties";
+    public static final String CATEGORY_PROVENANCE = "http://www.researchspace.org/ontologies/platform/FieldCategories/provenance";
+    public static final String CATEGORY_SUBJECTS = "http://www.researchspace.org/ontologies/platform/FieldCategories/subjects";
+    public static final String CATEGORY_DATING = "http://www.researchspace.org/ontologies/platform/FieldCategories/dating";
+    public static final String CATEGORY_NOTES = "http://www.researchspace.org/ontologies/platform/FieldCategories/notes";
+    public static final String CATEGORY_ARTWORK_MONUMENT = "http://www.researchspace.org/ontologies/platform/FieldCategories/artwork_monument";
+    public static final String CATEGORY_CREATOR_ATTRIBUTION = "http://www.researchspace.org/ontologies/platform/FieldCategories/creator_attribution";
+    public static final String CATEGORY_REFERENCES = "http://www.researchspace.org/ontologies/platform/FieldCategories/references";
     //EXTENSIONS
     public static final String CSV = ".csv";
 
@@ -151,7 +161,9 @@ public class Resources {
             + "PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>\n"
             + "PREFIX User: <http://www.researchspace.org/resource/user/>\n"
             + "PREFIX bds: <http://www.bigdata.com/rdf/search#>\n"
-            + "PREFIX Platform: <http://www.researchspace.org/resource/system/>\n";
+            + "PREFIX Platform: <http://www.researchspace.org/resource/system/>\n"
+            + "PREFIX fc: <https://artresearch.net/resource/custom/fc/>\n"
+            + "PREFIX cfc: <https://artresearch.net/resource/custom/fc/>\n";
 
     // SERVER
     public static final String SOLR_SERVER = "http://213.171.209.34:8983/solr/";

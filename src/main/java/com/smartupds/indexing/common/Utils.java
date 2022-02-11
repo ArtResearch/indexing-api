@@ -38,20 +38,16 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Property;
-import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.solr.client.solrj.impl.HttpSolrClient.RemoteSolrException;
-import org.apache.solr.client.solrj.request.CoreAdminRequest;
 import org.json.simple.parser.JSONParser;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -89,8 +85,8 @@ public class Utils {
                 constructQuery.add(Resources.LABEL_QUERY);
             }
             constructQuery.forEach(query -> {
-//                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "LIMIT 10\n", Resources.SELECT);
-                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
+                QueryData downloader = new QueryData(root.elementText("endpoint"), query + " LIMIT 10\n", Resources.SELECT);
+//                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
 
                 if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {
                     downloader.configure(root.elementText("username"), root.elementText("password"));

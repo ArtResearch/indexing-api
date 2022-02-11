@@ -67,7 +67,7 @@ public class QueryData implements Downloader {
             try (RepositoryConnection conn = repo.getConnection()) {
                 Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing select query : \n{0}", query);
                 TupleQuery select = conn.prepareTupleQuery(QueryLanguage.SPARQL,query);
-                Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluationg select query");
+                Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluating select query");
                 TupleQueryResult result = select.evaluate();
                 Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Successful query evaluation");
                 while (result.hasNext()){
@@ -110,7 +110,7 @@ public class QueryData implements Downloader {
         RepositoryConnection conn = repo.getConnection();
         Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing select query : \n{0}", query);
         TupleQuery select = conn.prepareTupleQuery(QueryLanguage.SPARQL,query);
-        Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluationg select query");
+        Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluating select query");
         TupleQueryResult result = select.evaluate();
         Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Successful query evaluation");
         while (result.hasNext()){
@@ -156,7 +156,7 @@ public class QueryData implements Downloader {
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing graph query : \n".concat(query));
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Query Hash : ".concat(""+Math.abs(query.hashCode())));
             GraphQuery graph = conn.prepareGraphQuery(query);
-            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluationg graph query");
+            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluating graph query");
             GraphQueryResult result = graph.evaluate();
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Successful query evaluation");
             if (result.hasNext())
@@ -217,10 +217,17 @@ public class QueryData implements Downloader {
         int index = pattern.indexOf("{");
         pattern = pattern.substring(0, index+1) + subjectType + pattern.substring(index+1, pattern.length());
         pattern = pattern.replaceAll("(SELECT|select).*(?=WHERE|where)",Resources.setConstructQ(order,field_name,additionalSubjects));
-        String cunstructpattern = Resources.PREFIXES.concat(pattern);
-        cunstructpattern = cunstructpattern.replaceAll("(graph|GRAPH)\\s*\\?graph[\\s\\t\\n]*\\{", " ");
-        cunstructpattern = cunstructpattern.replaceAll("\\}[\\s\\t\\n]*\\?(graph|subject)\\s+<https:\\/\\/pharos\\.artresearch\\.net\\/custom\\/has_provider>\\s+\\?prov[a-z]*\\s*\\.[\\s\\t\\n]*\\?prov[a-z]*\\s+rdfs:label\\s+\\?prov[a-z]*Label\\s*\\.", " ");
-        return cunstructpattern;
+        String constructpattern = Resources.PREFIXES.concat(pattern) + "\n";
+//        If union inside query then do not remove graph and providers
+        if (!constructpattern.contains("UNION")) {
+            constructpattern = constructpattern.replaceAll("(graph|GRAPH)\\s*\\?graph[\\s\\t\\n]*\\{", " ");
+            constructpattern = constructpattern.replaceAll("\\}[\\s\\t\\n]*\\?(graph|subject)\\s+<https:\\/\\/artresearch\\.net\\/custom\\/has_provider>\\s+\\?prov[a-z]*\\s*\\.[\\s\\t\\n]*\\?prov[a-z]*\\s+rdfs:label\\s+\\?prov[a-z]*Label\\s*\\.", " ");
+        }
+        constructpattern = constructpattern.replaceAll("[\\s\\t\\n]*(GROUP BY|group by).*\\n", " ");  
+        constructpattern = constructpattern.replaceAll("\\?place rdfs:label \\?place_l.", "\\?place rdfs:label \\?value.");
+        constructpattern = constructpattern.replaceAll("BIND\\(\\?subject[\\s\\t\\n]+as[\\s\\t\\n]+\\?s\\)", "\\?s owl:sameAs \\?subject.");
+
+        return constructpattern;
     }
     
     private String constructPatternVal(String pattern, String subjectType, String order, String field_name, boolean additionalSubjects){
@@ -229,9 +236,17 @@ public class QueryData implements Downloader {
         pattern = pattern.replaceAll("[\\?\\$]"+Resources.VALUE+"(?=[\\s\\.](?!.*("+Resources.WHERE.toUpperCase()+"|"+Resources.WHERE+")))" , "?"+Resources.VALUE_URI+ " ").trim();
         pattern = pattern.substring(0,pattern.lastIndexOf("}")-1).concat("\n\t?"+Resources.VALUE_URI+" <"+Resources.RDFS_LABEL+"> ?" + Resources.VALUE + ".\n}");
         pattern = pattern.replaceAll("(SELECT|select).*(?=WHERE|where)",Resources.setConstructQ(order, field_name, additionalSubjects));
-        String cunstructpattern = Resources.PREFIXES.concat(pattern);
-        cunstructpattern = cunstructpattern.replaceAll("(graph|GRAPH)\\s*\\?graph[\\s\\t\\n]*\\{", " ");
-        cunstructpattern = cunstructpattern.replaceAll("\\}[\\s\\t\\n]*\\?(graph|subject)\\s+<https:\\/\\/pharos\\.artresearch\\.net\\/custom\\/has_provider>\\s+\\?prov[a-z]*\\s*\\.[\\s\\t\\n]*\\?prov[a-z]*\\s+rdfs:label\\s+\\?prov[a-z]*Label\\s*\\.", " ");
-        return cunstructpattern;
+        String constructpattern = Resources.PREFIXES.concat(pattern) + "\n";
+      
+//      If union inside query then do not remove graph and providers
+        if (!constructpattern.contains("UNION")) {
+            constructpattern = constructpattern.replaceAll("(graph|GRAPH)\\s*\\?graph[\\s\\t\\n]*\\{", " ");
+            constructpattern = constructpattern.replaceAll("\\}[\\s\\t\\n]*\\?(graph|subject)\\s+<https:\\/\\/artresearch\\.net\\/custom\\/has_provider>\\s+\\?prov[a-z]*\\s*\\.[\\s\\t\\n]*\\?prov[a-z]*\\s+rdfs:label\\s+\\?prov[a-z]*Label\\s*\\.", " ");
+        }               
+        constructpattern = constructpattern.replaceAll("[\\s\\t\\n]*(GROUP BY|group by).*\\n", " ");  
+        constructpattern = constructpattern.replaceAll("\\?place rdfs:label \\?place_l.", "\\?place rdfs:label \\?value.");
+        constructpattern = constructpattern.replaceAll("BIND\\(\\?subject[\\s\\t\\n]+as[\\s\\t\\n]+\\?s\\)", "\\?s owl:sameAs \\?subject.");
+   
+        return constructpattern;
     }
 }
