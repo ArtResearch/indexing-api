@@ -5,10 +5,10 @@
  */
 package com.smartupds.indexing;
 
-import com.smartupds.indexing.impl.PhotoIndexGenerator;
 import com.smartupds.indexing.common.Resources;
 import com.smartupds.indexing.common.Utils;
 import com.smartupds.indexing.impl.ArtistIndexGenerator;
+import com.smartupds.indexing.impl.PhotoIndexGenerator;
 import com.smartupds.indexing.impl.PhotographersIndexGenerator;
 import com.smartupds.indexing.impl.RepositoriesIndexGenerator;
 import com.smartupds.indexing.impl.WorkIndexGenerator;
@@ -39,13 +39,11 @@ public class Main {
         try {
             createOptionsList();
             
-//            args = new String[] {"-i","-type","photographers"};
-//            args = new String[] {"-i","-type","photos"};
-//            args = new String[] {"-i","-type","repositories"};
-
-            args = new String [] {"-i" , "-type", "artworks"};
-//            args = new String [] {"-i", "-type", "artists", "-core", "artists"};
-//            args = new String [] {"-i", "-type", "artists", "-core", "artists"};
+//            args = new String [] {"-i" , "-type", "artworks", "-core", "artworks_v5"};
+//            args = new String [] {"-i", "-type", "artists", "-core", "artists_v5"};
+//            args = new String [] {"-i", "-type", "photographers", "-core", "photographers_v5"};
+            args = new String [] {"-i", "-type", "repositories", "-core", "repositories_v5"};
+//            args = new String [] {"-i", "-type", "photos", "-core", "photos_v5"};
 
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);

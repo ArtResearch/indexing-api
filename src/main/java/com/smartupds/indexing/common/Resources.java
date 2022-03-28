@@ -166,9 +166,13 @@ public class Resources {
             + "PREFIX cfc: <https://artresearch.net/resource/custom/fc/>\n";
 
     // SERVER
-    public static final String SOLR_SERVER = "http://213.171.209.34:8983/solr/";
-    public static String SOLR_CORE = "test_core";
-//    public static final String SOLR_SERVER = "http://localhost:8983/solr/";
+//    public static final String SOLR_SERVER = "http://213.171.209.34:8983/solr/";
+    public static String SOLR_CORE = "photographers_v5";
+    public static String SOLR_ARTWORKS_CORE = "artworks_v5";
+    public static String SOLR_ARTISTS_CORE = "artists_v5";
+    public static String SOLR_PHOTOS_CORE = "photos_v5";
+    public static String SOLR_PHOTOGRAPHERS_CORE = "photographers_v5";
+    public static final String SOLR_SERVER = "http://localhost:8983/solr/";
 
     // REQUESTS
     public static final String UPDATE_JSON = "/update/json";

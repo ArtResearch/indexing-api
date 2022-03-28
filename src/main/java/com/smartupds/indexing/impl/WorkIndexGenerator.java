@@ -9,15 +9,9 @@ import com.smartupds.indexing.api.IndexGenerator;
 import com.smartupds.indexing.common.Resources;
 import com.smartupds.indexing.common.Utils;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 
 /**
  *
@@ -50,10 +44,10 @@ public class WorkIndexGenerator implements IndexGenerator{
 //                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
         
 
-        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
-        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
+//        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
+//        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
 //        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_FIXED,Resources.SOLR_CORE);
-//        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED_SPLIT,Resources.SOLR_CORE);
+        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED_SPLIT,Resources.SOLR_ARTWORKS_CORE);
         
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
