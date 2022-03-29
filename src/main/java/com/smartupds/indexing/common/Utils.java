@@ -17,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -68,11 +69,37 @@ public class Utils {
     static HashMap<String, String> termsWeights = new HashMap<>();
     static ArrayList<ArrayList<String>> paths = new ArrayList();
 
-    public static void downloadSubjectFields(String category, String type, File configurationfile, String constructFolder, String indexfolder) {
+     public static void downloadSubjectFieldsDir(File configurationfile, String constructFolder, String indexfolder, String field) {
+        try {
+            ArrayList<String> constructQueries = new ArrayList<String>();
+            for(File file: new File(Resources.FOLDER_QUERIES + "/" + field).listFiles()){                
+                String fileContent = new String(Files.readAllBytes(Paths.get(file.getCanonicalPath())), StandardCharsets.UTF_8);
+                constructQueries.add(fileContent);
+                Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Loading graph query : \n".concat(fileContent));   
+            }
+            SAXReader reader = new SAXReader();
+            reader.setEncoding("UTF-8");
+            Document doc = reader.read(new FileInputStream(configurationfile));
+            Element root = doc.getRootElement();         
+            constructQueries.forEach(query -> {
+                QueryData downloader = new QueryData(root.elementText("endpoint"), query, Resources.SELECT);
+                if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {
+                    downloader.configure(root.elementText("username"), root.elementText("password"));
+                }
+                downloader.downloadConstruct(constructFolder, indexfolder);
+            });
+
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void downloadQueries(String category, String type, File configurationfile, String constructFolder, String indexfolder, String field) {
         try {
             ArrayList<String> constructQuery = null;
             if (type.equals(Resources.TYPE_PHOTOGRAPHERS)){
-//                constructQuery = extractFieldPatternsByType(category, type, configurationfile, "FILTER CONTAINS(STR(?subject),\"wiki\")");
                 constructQuery = extractFieldPatternsByType(category, type, configurationfile, "FILTER (!CONTAINS(STR(?subject),\"nypl\"))");
             } else
                 constructQuery = extractFieldPatternsByType(category, type, configurationfile, null);
@@ -85,7 +112,34 @@ public class Utils {
                 constructQuery.add(Resources.LABEL_QUERY);
             }
             constructQuery.forEach(query -> {
-                QueryData downloader = new QueryData(root.elementText("endpoint"), query + " LIMIT 10\n", Resources.SELECT);
+                QueryData downloader = new QueryData(root.elementText("endpoint"), query + Resources.LIMIT, Resources.SELECT);
+                if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {
+                    downloader.configure(root.elementText("username"), root.elementText("password"));
+                }
+                downloader.downloadQuery(Resources.FOLDER_QUERIES + "/" + field);
+            });
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void downloadSubjectFields(String category, String type, File configurationfile, String constructFolder, String indexfolder) {
+        try {
+            ArrayList<String> constructQuery = null;
+            if (type.equals(Resources.TYPE_PHOTOGRAPHERS)){
+                constructQuery = extractFieldPatternsByType(category, type, configurationfile, "FILTER (!CONTAINS(STR(?subject),\"nypl\"))");
+            } else
+                constructQuery = extractFieldPatternsByType(category, type, configurationfile, null);
+            SAXReader reader = new SAXReader();
+            reader.setEncoding("UTF-8");
+            Document doc = reader.read(new FileInputStream(configurationfile));
+            Element root = doc.getRootElement();
+            if (!type.equals(Resources.TYPE_PHOTOGRAPHERS)){
+                Resources.setLabelQuery(type,null);
+                constructQuery.add(Resources.LABEL_QUERY);
+            }
+            constructQuery.forEach(query -> {
+                QueryData downloader = new QueryData(root.elementText("endpoint"), query + Resources.LIMIT, Resources.SELECT);
 //                QueryData downloader = new QueryData(root.elementText("endpoint"), query + "\n", Resources.SELECT);
 
                 if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {

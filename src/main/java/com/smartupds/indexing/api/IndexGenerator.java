@@ -17,4 +17,5 @@ public interface IndexGenerator {
      * @param core_name
      */
     public void indexResources(String core_name);
+    public void downloadQueries();
 }

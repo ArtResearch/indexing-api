@@ -5,6 +5,7 @@
  */
 package com.smartupds.indexing.impl;
 
+import com.smartupds.indexing.api.IndexGenerator;
 import com.smartupds.indexing.common.Resources;
 import com.smartupds.indexing.common.Utils;
 import java.io.File;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author kapar
  */
-public class RepositoriesIndexGenerator {
+public class RepositoriesIndexGenerator  implements IndexGenerator{
 
     private File configurationFile;
 
@@ -46,5 +47,15 @@ public class RepositoriesIndexGenerator {
 
     public static RepositoriesIndexGenerator create(File configurationfile) {
         return new RepositoriesIndexGenerator(configurationfile);
+    }
+
+    public void downloadQueries()
+    {
+        Utils.downloadQueries(Resources.CATEGORY_REPOSITORY_INFO, Resources.TYPE_REPOSITORIES,
+            this.configurationFile, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON, Resources.REPOSITORIES);
+        Utils.downloadQueries(Resources.CATEGORY_PERSON_INFO, Resources.TYPE_REPOSITORIES,
+            this.configurationFile, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON, Resources.REPOSITORIES);
+        Utils.downloadQueries(Resources.CATEGORY_EXTERNAL_INFO, Resources.TYPE_REPOSITORIES,
+            this.configurationFile, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON, Resources.REPOSITORIES);
     }
 }

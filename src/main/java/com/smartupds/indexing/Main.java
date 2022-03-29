@@ -5,6 +5,7 @@
  */
 package com.smartupds.indexing;
 
+import com.smartupds.indexing.api.IndexGenerator;
 import com.smartupds.indexing.common.Resources;
 import com.smartupds.indexing.common.Utils;
 import com.smartupds.indexing.impl.ArtistIndexGenerator;
@@ -39,12 +40,12 @@ public class Main {
         try {
             createOptionsList();
             
-//            args = new String [] {"-i" , "-type", "artworks", "-core", "artworks_v5"};
-//            args = new String [] {"-i", "-type", "artists", "-core", "artists_v5"};
+            args = new String [] {"-d", "-i" , "-type", "artworks", "-core", "artworks_v5"};
+//            args = new String [] {"-d", "-i", "-type", "artists", "-core", "artists_v5"};
 //            args = new String [] {"-i", "-type", "photographers", "-core", "photographers_v5"};
-            args = new String [] {"-i", "-type", "repositories", "-core", "repositories_v5"};
+//            args = new String [] {"-i", "-type", "repositories", "-core", "repositories_v5"};
 //            args = new String [] {"-i", "-type", "photos", "-core", "photos_v5"};
-
+//          args = new String [] {"-d"}
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);
         } catch (ParseException ex) {
@@ -57,40 +58,49 @@ public class Main {
         Option type = new Option("t", "type", true,"Type to index: -t [type].");
         Option core = new Option("c", "core", true,"Core to add data: -c [core_name].");
         Option weights = new Option("w", "weights", false, "Flag to change weigths.");
+        Option download = new Option("d", "download", false, "Flag to download queries.");
         options.addOption(index)
                .addOption(type)
                .addOption(core)
-               .addOption(weights);
+               .addOption(weights)
+               .addOption(download);
     }
 
     private static void handleCommandLine(CommandLine line) throws IOException{
        
         if(line.hasOption("i") && line.hasOption("type")){
-             Logger.getLogger(Main.class.getName()).log(Level.INFO, "Indexing Processing Started");
+            Logger.getLogger(Main.class.getName()).log(Level.INFO, "Indexing Processing Started");
+            IndexGenerator indexGenerator = null;
             if(line.hasOption("core"))
                 Resources.setSolrCore(line.getOptionValue("core"));
             /*Index Resources for artists*/
-            if (line.getOptionValue("t").equals("artists"))
-                ArtistIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
-
+            if (line.getOptionValue("t").equals("artists")) 
+                indexGenerator = ArtistIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));                
+            
             /*Index Resources for work*/
             if (line.getOptionValue("t").equals("artworks"))
-                WorkIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
+                indexGenerator = WorkIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
 
             /*Index Resources for photos*/
             if (line.getOptionValue("t").equals("photos"))
-                PhotoIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
+                indexGenerator = PhotoIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
  
             /*Index Resources for photographers*/
             if (line.getOptionValue("t").equals("photographers"))
-                PhotographersIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
+                indexGenerator = PhotographersIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
             
              /*Index Resources for repositories*/
             if (line.getOptionValue("t").equals("repositories"))
-                RepositoriesIndexGenerator.create(new File(Resources.CONFIGURATION_FILE)).indexResources(Resources.SOLR_CORE);
-                
+                indexGenerator = RepositoriesIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
+            
+            /*Download queries else perform usual functionality*/
+            if (line.hasOption("d"))            
+               indexGenerator.downloadQueries();            
+            else
+               indexGenerator.indexResources(Resources.SOLR_CORE);
+    
         } else if(line.hasOption("w")){
-             Logger.getLogger(Main.class.getName()).log(Level.INFO, "change weights Processing Started");
+            Logger.getLogger(Main.class.getName()).log(Level.INFO, "Change weights Processing Started");
             try {
                 Utils.change_weigths();
             } catch (FileNotFoundException | org.json.simple.parser.ParseException ex) {

@@ -5,6 +5,7 @@
  */
 package com.smartupds.indexing.impl;
 
+import com.smartupds.indexing.api.IndexGenerator;
 import com.smartupds.indexing.common.Resources;
 import com.smartupds.indexing.common.Utils;
 import java.io.File;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author kapar
  */
-public class PhotographersIndexGenerator {
+public class PhotographersIndexGenerator  implements IndexGenerator{
     private File configurationFile;
 
     public PhotographersIndexGenerator(File configurationFile) {
@@ -43,5 +44,13 @@ public class PhotographersIndexGenerator {
 
     public static PhotographersIndexGenerator create(File configurationfile) {
         return new PhotographersIndexGenerator(configurationfile);
+    }
+
+    public void downloadQueries()
+    {
+        Utils.downloadQueries(Resources.CATEGORY_PERSON_INFO,Resources.TYPE_PHOTOGRAPHERS,
+            this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON, Resources.PHOTOGRAPHERS);
+        Utils.downloadQueries(Resources.CATEGORY_EXTERNAL_INFO,Resources.TYPE_PHOTOGRAPHERS,
+            this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON, Resources.PHOTOGRAPHERS);
     }
 }

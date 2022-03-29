@@ -9,7 +9,7 @@ package com.smartupds.indexing.common;
  *
  * @author Manolis Fragiadoulakis <fragiadoulakis at smartupds.com>
  */
-public class Resources {
+public class Resources {    
 
     public static final String FOLDER_WORKSPACE = "workspace";
     public static final String FOLDER_TERMS_AND_WEIGHTS = "terms_and_weights";
@@ -31,6 +31,8 @@ public class Resources {
     public static final String PHOTOGRAPHERS_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.PHOTOGRAPHERS_TERM_AND_WEIGHTS;
     public static final String REPOSITORIES_TERM_AND_WEIGHTS_FILE = FOLDER_TERMS_AND_WEIGHTS + "/" + Resources.REPOSITORIES_TERM_AND_WEIGHTS;
   
+    public static final String FOLDER_QUERIES = FOLDER_WORKSPACE + "/"+ "Queries";
+
     public static final String FOLDER_OUTPUT_INDEXING_WORKS = FOLDER_OUTPUT_INDEXING + "/" + Resources.WORKS;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT = FOLDER_OUTPUT_INDEXING_WORKS + "/" + Resources.CONSTRUCT;
     public static final String FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT_SPLIT = FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT + "/" + Resources.SPLIT;
@@ -133,7 +135,7 @@ public class Resources {
     public static final String CATEGORY_REFERENCES = "http://www.researchspace.org/ontologies/platform/FieldCategories/references";
     //EXTENSIONS
     public static final String CSV = ".csv";
-
+    public static final String LIMIT = "LIMIT 10 \n";
     // QUERY
     public static String CONSTRUCT_Q;// = "CONSTRUCT { ?subject_p rdfs:label ?value }";
 
@@ -165,7 +167,7 @@ public class Resources {
             + "PREFIX fc: <https://artresearch.net/resource/custom/fc/>\n"
             + "PREFIX cfc: <https://artresearch.net/resource/custom/fc/>\n";
 
-    // SERVER
+// SERVER
 //    public static final String SOLR_SERVER = "http://213.171.209.34:8983/solr/";
     public static String SOLR_CORE = "photographers_v5";
     public static String SOLR_ARTWORKS_CORE = "artworks_v5";
@@ -186,6 +188,7 @@ public class Resources {
     public static final String APPLICATION_OCTETSTREAM = "application/octet-stream";
 
     public static String LABEL_QUERY;
+   
 
     public static String setConstructQ(String order, String field_name, boolean additionalSubjects) {
         if (additionalSubjects) {

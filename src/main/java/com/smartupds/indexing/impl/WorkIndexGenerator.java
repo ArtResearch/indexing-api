@@ -57,4 +57,22 @@ public class WorkIndexGenerator implements IndexGenerator{
     public static WorkIndexGenerator create(File configurationfile){
         return new WorkIndexGenerator(configurationfile);
     }
+
+    public void downloadQueries()
+    {
+        Utils.downloadQueries(Resources.CATEGORY_ARTWORK_MONUMENT, Resources.TYPE_WORK,
+            this.configurationFile, Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
+        Utils.downloadQueries(Resources.CATEGORY_CREATOR_ATTRIBUTION,Resources.TYPE_WORK,
+            this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
+        Utils.downloadQueries(Resources.CATEGORY_PHYSICAL_PROPERTIES,Resources.TYPE_WORK,
+            this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
+        Utils.downloadQueries(Resources.CATEGORY_PROVENANCE,Resources.TYPE_WORK,
+            this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
+        Utils.downloadQueries(Resources.CATEGORY_SUBJECTS,Resources.TYPE_WORK,
+            this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
+        Utils.downloadQueries(Resources.CATEGORY_DATING,Resources.TYPE_WORK,
+            this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
+        Utils.downloadQueries(Resources.CATEGORY_REFERENCES,Resources.TYPE_WORK,
+            this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
+    }
 }

@@ -10,8 +10,10 @@ import com.smartupds.indexing.common.Resources;
 import com.smartupds.indexing.common.Utils;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
@@ -21,19 +23,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Property;
 import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Statement;
 import org.eclipse.rdf4j.query.Binding;
 import org.eclipse.rdf4j.query.BindingSet;
-import org.eclipse.rdf4j.query.TupleQuery;
-import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.query.GraphQuery;
 import org.eclipse.rdf4j.query.GraphQueryResult;
+import org.eclipse.rdf4j.query.TupleQuery;
+import org.eclipse.rdf4j.query.TupleQueryResult;
 import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
@@ -142,6 +139,24 @@ public class QueryData implements Downloader {
         repo.shutDown();
         return list;
     }
+
+    public void downloadQuery(String queryFolder) {
+        new File(queryFolder).mkdirs();
+        OutputStream outputStream;
+        try {
+            outputStream = new FileOutputStream(queryFolder + "/" + Math.abs(query.hashCode()));       
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Saving graph query : \n".concat(query));            
+            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Query Hash : ".concat(""+Math.abs(query.hashCode())));
+            writer.write(query);
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(QueryData.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(QueryData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Saved query : ".concat(""+Math.abs(query.hashCode())));
+    }     
 
     public String downloadConstruct(String constructFolder,String indexfolder) {
         new File(constructFolder).mkdirs();
