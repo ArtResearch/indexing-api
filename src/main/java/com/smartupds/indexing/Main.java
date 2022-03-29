@@ -40,7 +40,7 @@ public class Main {
         try {
             createOptionsList();
             
-//            args = new String [] {"-i" , "-type", "artworks", "-core", "artworks_v5"};
+            args = new String [] {"-i" ,"-type", "artworks", "-core", "artworks_v5"};
 //            args = new String [] {"-d", "-i", "-type", "artists", "-core", "artists_v5"};
 //            args = new String [] {"-d", "-i", "-type", "photographers", "-core", "photographers_v5"};
 //            args = new String [] {"-d", "-i", "-type", "repositories", "-core", "repositories_v5"};

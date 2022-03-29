@@ -163,45 +163,62 @@ public class QueryData implements Downloader {
         new File(indexfolder).mkdirs();
         String field_name = "";
         try {
+            int limit = 100000;
+            int counter = 0;     
+            int loop = 0;
             OutputStreamWriter writer = null;
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Initializing repository");
             repo.initialize();
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Getting repository connection");
             RepositoryConnection conn = repo.getConnection();
-            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing graph query : \n".concat(query));
-            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Query Hash : ".concat(""+Math.abs(query.hashCode())));
-            GraphQuery graph = conn.prepareGraphQuery(query);
-            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluating graph query");
-            GraphQueryResult result = graph.evaluate();
-            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Successful query evaluation");
-            if (result.hasNext())
-                writer = new OutputStreamWriter(new FileOutputStream(constructFolder +"/"+ Math.abs(query.hashCode())+".n3",false),"UTF-8");
             
-            ArrayList<String[]> statements = new ArrayList<>();
             String order = "";
-            while(result.hasNext()){
-                Statement stmt = result.next();
-                if(stmt.getObject() instanceof IRI)
-                {
-                    writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n");
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "===".concat("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n"));
-                }                    
-                else {
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "===".concat("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n"));
-//                    writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\\", "").replace("\n", " ").replace("\"", "\\\"") +"\".\n");
-                    writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n");
+            ArrayList<String[]> statements = new ArrayList<>();  
+            while(true){
+                loop++;
+                if (counter%limit==0 && loop==1){
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing graph query : \n".concat(query + " OFFSET " + counter + " LIMIT " + limit));
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Query Hash : ".concat(""+Math.abs(query.hashCode())));
+                    GraphQuery graph = conn.prepareGraphQuery(query + " OFFSET " + counter + " LIMIT " + limit);
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluating graph query");
+                    GraphQueryResult result = graph.evaluate();
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Successful query evaluation");
+                    if (result.hasNext())
+                        writer = new OutputStreamWriter(new FileOutputStream(constructFolder +"/"+ Math.abs(query.hashCode())+"_"+counter+".n3",false),"UTF-8");
+
+                                     
+                    while(result.hasNext()){
+                        Statement stmt = result.next();
+                        if(stmt.getObject() instanceof IRI)
+                        {
+                            writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n");
+//                            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "===".concat("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n"));
+                        }                    
+                        else {
+//                            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "===".concat("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n"));
+                            writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n");
+                        }
+                        if(stmt.getPredicate().toString().equals("http://www.researchspace.org/resource/system/fields/order")){
+                            order = stmt.getObject().stringValue();
+                        } else if (stmt.getPredicate().toString().equals("http://www.artresearch.net/custom/fieldLabel")){
+                            field_name = stmt.getObject().stringValue();
+                        } else {
+                            statements.add(new String[]{stmt.getSubject().stringValue(),stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"")});
+                        }
+                        counter++;                        
+                    }
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Counter: ".concat(counter + ""));
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Loop: ".concat(loop + ""));
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(constructFolder +"/"+ Math.abs(query.hashCode())+".n3"));
+                    if (writer!=null)
+                        writer.close();
                 }
-                if(stmt.getPredicate().toString().equals("http://www.researchspace.org/resource/system/fields/order")){
-                    order = stmt.getObject().stringValue();
-                } else if (stmt.getPredicate().toString().equals("http://www.artresearch.net/custom/fieldLabel")){
-                    field_name = stmt.getObject().stringValue();
-                } else {
-                    statements.add(new String[]{stmt.getSubject().stringValue(),stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"")});
+                else 
+                {
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "==============Else: ");
+                    break;   
                 }
             }
-            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(constructFolder +"/"+ Math.abs(query.hashCode())+".n3"));
-            if (writer!=null)
-                writer.close();
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Shutting down repository");
             conn.close();
             repo.shutDown();
