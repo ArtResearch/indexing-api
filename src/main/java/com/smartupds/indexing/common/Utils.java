@@ -112,7 +112,7 @@ public class Utils {
                 constructQuery.add(Resources.LABEL_QUERY);
             }
             constructQuery.forEach(query -> {
-                QueryData downloader = new QueryData(root.elementText("endpoint"), query + Resources.LIMIT, Resources.SELECT);
+                QueryData downloader = new QueryData(root.elementText("endpoint"), query, Resources.SELECT);
                 if (!root.elementText("username").isEmpty() && !root.elementText("password").isEmpty()) {
                     downloader.configure(root.elementText("username"), root.elementText("password"));
                 }

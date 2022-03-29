@@ -47,7 +47,7 @@ public class PhotoIndexGenerator  implements IndexGenerator{
         
 //        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
 //        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
-        
+        Utils.downloadSubjectFieldsDir(this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.PHOTOS);
 //        Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT,Resources.SOLR_PHOTOS_CORE);
 //        Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED_SPLIT,Resources.SOLR_PHOTOS_CORE);
         

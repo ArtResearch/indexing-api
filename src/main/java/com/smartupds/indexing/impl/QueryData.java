@@ -182,8 +182,12 @@ public class QueryData implements Downloader {
             while(result.hasNext()){
                 Statement stmt = result.next();
                 if(stmt.getObject() instanceof IRI)
+                {
                     writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n");
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "===".concat("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n"));
+                }                    
                 else {
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "===".concat("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n"));
 //                    writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\\", "").replace("\n", " ").replace("\"", "\\\"") +"\".\n");
                     writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n");
                 }
