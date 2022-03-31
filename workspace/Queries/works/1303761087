@@ -28,13 +28,10 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "last_known_location".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "6000".
-}WHERE {	?subject a <https://artresearch.net/resource/fc/work>.
-
+}WHERE{	
+  ?subject a <https://artresearch.net/resource/fc/work>.
   ?s owl:sameAs ?subject.
   ?s a cfc:work.
-  ?s crm:P74_has_current_or_former_residence|crm:P55_has_current_location ?place.
-  ?place rdfs:label ?value.
-  BIND(<https://artresearch.net/resource/pharos/source/Pharos> AS ?provider)
-  BIND("Pharos" AS ?providerLabel)
+  ?s (crm:P74_has_current_or_former_residence|crm:P55_has_current_location)/rdfs:label ?value.
   FILTER NOT EXISTS { ?s <https://artresearch.net/resource/fr/Work_kept_by_Institution>|crm:P50_has_current_keeper ?repo. }
 } 

@@ -28,15 +28,11 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "dating".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "2701".
-}WHERE {	?subject owl:sameAs ?subject_p.
-	?subject_p a <https://artresearch.net/resource/fc/work>.
- 
-   
-    $subject crm:P19i_motivated ?activity.
-    ?activity crm:P4_has_time-span ?ts.
-    ?activity crm:P2_has_type ?type.
-    ?ts crm:P82_at_some_time_within ?date.
-   
-  ?type rdfs:label ?type_label.
+}WHERE {	
+  ?subject owl:sameAs ?subject_p.
+  ?subject_p a <https://artresearch.net/resource/fc/work>.
+  $subject crm:P19i_motivated ?activity.
+  ?activity crm:P4_has_time-span/crm:P82_at_some_time_within ?date.
+  ?activity crm:P2_has_type/rdfs:label ?type_label.
   BIND(CONCAT(?date," (",?type_label,") ") as ?value)
 }

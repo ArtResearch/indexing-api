@@ -28,12 +28,8 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "transformation".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "930".
-}WHERE 
-{	?subject owl:sameAs ?subject_p.
+}WHERE{
+	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
- 
-	 
-  		$subject crm:P124i_was_transformed_by ?event.
-    	?event rdfs:label ?value.
-	 
+ 	$subject crm:P124i_was_transformed_by/rdfs:label ?value. 
 }

@@ -28,13 +28,8 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "production_participant".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "230".
-}WHERE 
-{	?subject owl:sameAs ?subject_p.
+}WHERE{	
+	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
- 
-	 
-		$subject crm:P108i_was_produced_by ?production.
-		?production crm:P11_had_participant ?value_uri .
-	 
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+ 	$subject crm:P108i_was_produced_by/crm:P11_had_participant/http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

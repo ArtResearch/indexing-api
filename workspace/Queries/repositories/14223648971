@@ -26,10 +26,10 @@ PREFIX fc: <https://artresearch.net/resource/custom/fc/>
 PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject_p rdfs:label ?value.
-	?subject_p <http://www.artresearch.net/custom/fieldLabel> "shot_place".
-	?subject_p <http://www.researchspace.org/resource/system/fields/order> "960".
-}WHERE{
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "type".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "1000".
+} WHERE {	
 	?subject owl:sameAs ?subject_p.
-	?subject_p a <https://artresearch.net/resource/fc/work>.
- 	$subject crm:P128_carries/crm:P128i_is_carried_by/crm:P108i_was_produced_by/crm:P7_took_place_at/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
-}
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+	?subject crm:P2_has_type/rdfs:label ?value.
+} 

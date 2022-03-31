@@ -28,12 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "creator".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "200".
-}WHERE  {	?subject a <https://artresearch.net/resource/fc/work>.
-  
-
-	 
-    	?subject <https://artresearch.net/resource/fr/Work_created_from_Artist>|<https://artresearch.net/resource/custom/fr/Work_created_from_Artist> ?value_uri .
-  	 
-  
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}WHERE  {	
+	?subject a <https://artresearch.net/resource/fc/work>.
+  	?subject <https://artresearch.net/resource/fr/Work_created_from_Artist>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

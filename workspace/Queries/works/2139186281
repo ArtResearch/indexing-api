@@ -28,14 +28,10 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "exhibition".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "900".
-}WHERE 
-{	?subject owl:sameAs ?subject_p.
+}WHERE{
+	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
- 
-	 
-  		$subject crm:P12i_was_present_at ?activity.
-  		?activity crm:P2_has_type ?type.
-  		?activity rdfs:label ?value.
-  	 
-    ?type rdfs:label "Exhibition".
+	$subject crm:P12i_was_present_at ?activity.
+	?activity crm:P2_has_type/rdfs:label "Exhibition".
+	?activity rdfs:label ?value.
 }

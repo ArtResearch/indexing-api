@@ -28,17 +28,8 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "technique".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "750".
-}WHERE 
-{	?subject owl:sameAs ?subject_p.
+}WHERE{	
+	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
- 
-   
-    ?subject <https://artresearch.net/resource/fr/Work_produced_using_technique_Technique> ?value_uri .
-#    ?subject crm:P108i_was_produced_by ?production.
-#  	?production crm:P33_used_specific_technique ?value_uri .
-   
-    FILTER EXISTS {?value_uri  rdfs:label ?label}
-  	BIND(IF( CONTAINS(STR(?value),"aat"), "AAT", ?provLabel) AS ?providerLabel)
-    BIND(IF( CONTAINS(STR(?value),"aat"), IRI("https://artresearch.net/resource/getty/source/Getty"), ?prov) AS ?provider)
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+    ?subject <https://artresearch.net/resource/custom/fr/Work_produced_using_technique_Technique>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

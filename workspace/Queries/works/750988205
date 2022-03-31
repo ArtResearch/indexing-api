@@ -34,5 +34,4 @@ CONSTRUCT {
 	$subject crm:P43_has_dimension ?dimension .
 	?dimension crm:P2_has_type <http://vocab.getty.edu/aat/300127013> .
 	?dimension crm:P90_has_value ?value
-     
 }

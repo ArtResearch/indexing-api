@@ -28,15 +28,10 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "production_date_alternative".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "340".
-}WHERE
-{	?subject owl:sameAs ?subject_p.
+}WHERE{
+	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
- 
-	 
-    	$subject <http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by> ?production .
-    	?production crm:P4_has_time-span ?tm.
-    	?tm crm:P2_has_type ?type .
-    	?tm crm:P82_at_some_time_within ?value.
-  	 
-    ?type rdfs:label "Alternative Date".
+	$subject <http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by>/crm:P4_has_time-span ?tm.
+	?tm crm:P2_has_type/rdfs:label "Alternative Date".
+	?tm crm:P82_at_some_time_within ?value.
 }
