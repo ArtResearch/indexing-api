@@ -28,12 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "place_of_birth".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "80002".
-}WHERE {	?subject a <https://artresearch.net/resource/fc/artist>.
-
-    
-	 $subject <https://artresearch.net/resource/fr/Person_has_Place_of_Birth> ?value_uri .
-   
-  BIND(IF( CONTAINS(STR(?value),"geonames"), "Geonames", ?provLabel) AS ?providerLabel)
-  BIND(IF( CONTAINS(STR(?value),"geonames"), IRI("https://artresearch.net/resource/geonames/source/Geonames"), ?prov) AS ?provider)
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}WHERE {	
+	?subject a <https://artresearch.net/resource/fc/artist>.
+	$subject <https://artresearch.net/resource/fr/Person_has_Place_of_Birth>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

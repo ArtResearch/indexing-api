@@ -28,10 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "name".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "1".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/fc/artist>.
-
-   
+} WHERE {	
+	?subject a <https://artresearch.net/resource/fc/artist>.
     ?subject rdfs:label ?value.
-   
 } 

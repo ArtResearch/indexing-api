@@ -28,10 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "children".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "900011".
-}WHERE {	?subject a <https://artresearch.net/resource/fc/artist>.
-
-   
-    $subject <https://artresearch.net/resource/fr/Person_parent_of_Person> ?value_uri .
-   
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}WHERE {
+	?subject a <https://artresearch.net/resource/fc/artist>.
+    $subject <https://artresearch.net/resource/fr/Person_parent_of_Person>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

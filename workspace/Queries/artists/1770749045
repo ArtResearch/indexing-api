@@ -28,13 +28,8 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "active".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80006".
-}WHERE 
-{	?subject owl:sameAs ?subject_p.
+}WHERE{	
+	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/artist>.
- 
-   
-  	$subject crm:P14i_Performed ?floruit.
-  	?floruit crm:P4_has_time-span ?tm.
-  	?tm crm:P82_at_some_time_within ?value .
-   
+  	$subject crm:P14i_Performed/crm:P4_has_time-span/crm:P82_at_some_time_within ?value .
 }

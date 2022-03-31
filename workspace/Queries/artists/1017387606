@@ -28,12 +28,9 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "date_of_birth".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "800011".
-}WHERE {	?subject owl:sameAs ?subject_p.
+}WHERE {	
+	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/artist>.
-
-    
-   
-    ?subject <https://artresearch.net/resource/fr/Person_has_Date_of_Birth>|<https://artresearch.net/resource/fr/Artist_has_Date_of_Birth> ?date .
-   
-  BIND(IF(datatype(?date)=xsd:date,STR(xsd:integer(YEAR(?date))),STR(xsd:integer(?date))) AS ?value)
+    ?subject <https://artresearch.net/resource/custom/fr/Person_has_Date_of_Birth>|<https://artresearch.net/resource/custom/fr/Artist_has_Date_of_Birth> ?date .
+   	BIND(IF(datatype(?date)=xsd:date,STR(xsd:integer(YEAR(?date))),STR(xsd:integer(?date))) AS ?value)
 } 
