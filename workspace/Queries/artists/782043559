@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "date_of_death".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "800031".
+
 }WHERE {	
     ?subject a <https://artresearch.net/resource/fc/artist>.
     ?subject <https://artresearch.net/resource/fr/Person_has_Date_of_Death>|<https://artresearch.net/resource/fr/Artist_has_Date_of_Death> ?date .

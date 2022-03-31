@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "date_of_birth".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "800011".
+
 }WHERE {	
 	?subject a <https://artresearch.net/resource/fc/photographer>.
 	FILTER (!CONTAINS(STR(?subject),"nypl"))

@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "partner".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "900009".
+
 }WHERE {	
 	?subject a <https://artresearch.net/resource/fc/artist>.
     $subject <https://artresearch.net/resource/fr/Person_partner_of_Person>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.

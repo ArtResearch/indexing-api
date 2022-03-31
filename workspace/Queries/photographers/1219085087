@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "active".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "80006".
+
 }WHERE{
 	?subject a <https://artresearch.net/resource/fc/photographer>.
   	$subject crm:P14i_Performed/crm:P4_has_time-span/crm:P82_at_some_time_within ?value .

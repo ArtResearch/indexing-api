@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "last_known_location".
-	?subject_p <http://www.researchspace.org/resource/system/fields/order> "6000".
+
 }WHERE {	
   ?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.

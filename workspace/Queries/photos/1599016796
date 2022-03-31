@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "color_information".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "699".
+
 } WHERE {	
 	?subject a <https://artresearch.net/resource/custom/fc/photo>.
 	$subject crm:P43_has_dimension ?dimension .

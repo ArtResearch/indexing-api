@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "production_date".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "320".
+
 }WHERE {	
   ?subject a <https://artresearch.net/resource/custom/fc/photo>.
   ?subject <https://artresearch.net/resource/fr/Photo_from_Date> ?start.

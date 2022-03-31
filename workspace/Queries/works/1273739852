@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "influenced_by".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "250".
+
 }WHERE{
 	?subject a <https://artresearch.net/resource/fc/work>.
     ?subject <https://artresearch.net/resource/fr/Work_influenced_by_Artist>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.

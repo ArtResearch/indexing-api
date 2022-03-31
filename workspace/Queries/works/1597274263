@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "museum_credit_line".
-	?subject_p <http://www.researchspace.org/resource/system/fields/order> "660".
+
 }WHERE {	
 	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.

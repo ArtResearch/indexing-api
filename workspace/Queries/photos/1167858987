@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "descriptive_notes".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "2400".
+
 }WHERE{	
 	?subject a <https://artresearch.net/resource/custom/fc/photo>.
  	$subject crm:P67i_is_referred_to_by ?information_object.

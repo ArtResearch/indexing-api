@@ -1,7 +1,7 @@
 CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "title".
-	?subject <http://www.researchspace.org/resource/system/fields/order> "100".
+
 } WHERE {	
   ?subject a <https://artresearch.net/resource/fc/institution>.
   ?subject rdfs:label ?value.

@@ -27,7 +27,7 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "object_rights_type".
-	?subject_p <http://www.researchspace.org/resource/system/fields/order> "1120".
+
 } WHERE {	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
   	$subject crm:P104_is_subject_to/crm:P2_has_type/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
