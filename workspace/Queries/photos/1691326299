@@ -28,21 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "material".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "755".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/custom/fc/photo>.
-
-  graph ?graph 
-  {
-    {
-    	?subject crm:P45_consists_of ?value_uri .
-    } UNION {
-    	?subject <https://artresearch.net/resource/fr/Work_consists_of_Material>|<https://artresearch.net/resource/fr/Photo_consists_of_Material> ?value_uri .
-    }
-  }
-  FILTER EXISTS {?value_uri  rdfs:label ?label}
-	?graph <https://artresearch.net/custom/has_provider> ?prov .
-	?prov rdfs:label ?provLabel.
-  	BIND(IF( CONTAINS(STR(?value),"aat"), "AAT", ?provLabel) AS ?providerLabel)
-    BIND(IF( CONTAINS(STR(?value),"aat"), IRI("https://artresearch.net/resource/getty/source/Getty"), ?prov) AS ?provider)
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}WHERE{
+	?subject a <https://artresearch.net/resource/custom/fc/photo>.
+	?subject (crm:P45_consists_of|<https://artresearch.net/resource/fr/Photo_consists_of_Material>)/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

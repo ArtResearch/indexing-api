@@ -28,12 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "state_of_preservation".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "1200".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/custom/fc/photo>.
- 
-	 
-  		$subject crm:P34i_was_assessed_by ?condition_assessment.
-  		?condition_assessment crm:P35_has_assigned ?value_uri .
-  	 
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}WHERE{
+	?subject a <https://artresearch.net/resource/custom/fc/photo>.
+	$subject crm:P34i_was_assessed_by/crm:P35_has_assigned/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

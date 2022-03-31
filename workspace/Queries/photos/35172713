@@ -28,15 +28,12 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "production_date".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "320".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/custom/fc/photo>.
-   
-	 
-    	?subject <https://artresearch.net/resource/fr/Photo_from_Date>|<https://artresearch.net/resource/custom/fr/Photo_from_Date> ?start.
-    OPTIONAL{
-      ?subject <https://artresearch.net/resource/fr/Photo_to_Date>|<https://artresearch.net/resource/custom/fr/Photo_to_Date> ?end.
-    }
-  	 
-    FILTER(datatype(?start)=xsd:date)
-    BIND(IF(BOUND(?end), CONCAT(REPLACE(STR(?start), "-01-01", ""), " - ", REPLACE(STR(?end), "-12-31", "")), ?start) AS ?value)
+}WHERE {	
+  ?subject a <https://artresearch.net/resource/custom/fc/photo>.
+  ?subject <https://artresearch.net/resource/fr/Photo_from_Date> ?start.
+  OPTIONAL{
+    ?subject <https://artresearch.net/resource/fr/Photo_to_Date> ?end.
+  }
+  FILTER(datatype(?start)=xsd:date)
+  BIND(IF(BOUND(?end), CONCAT(REPLACE(STR(?start), "-01-01", ""), " - ", REPLACE(STR(?end), "-12-31", "")), ?start) AS ?value)
 }

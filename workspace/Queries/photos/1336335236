@@ -28,13 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "acquisition".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "830".
-}WHERE {	?subject a <https://artresearch.net/resource/custom/fc/photo>.
- 
-   
-    ?subject crm:P24i_changed_ownership_through ?acquisition.
-   
-  ?acquisition rdfs:label ?value.
-  OPTIONAL {
-    ?acquisition <https://artresearch.net/custom/has_order> ?order.
-  }
-} order by ?order
+}WHERE {	
+  ?subject a <https://artresearch.net/resource/custom/fc/photo>.
+  ?subject crm:P24i_changed_ownership_through/rdfs:label ?value.
+}

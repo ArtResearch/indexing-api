@@ -28,18 +28,12 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "dimensions".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "700".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/custom/fc/photo>.
- 
-	 
-  		$subject crm:P43_has_dimension ?dimension.
- 		?dimension crm:P2_has_type ?type.
-  		?dimension crm:P90_has_value ?dvalue .
-  		?dimension crm:P91_has_unit ?unit_uri .
-  		?unit_uri rdfs:label ?unit.
-  	 
-  	?type rdfs:label ?qualifier.
-    FILTER(lang(?qualifier)="en")
+}WHERE{	
+	?subject a <https://artresearch.net/resource/custom/fc/photo>.
+ 	$subject crm:P43_has_dimension ?dimension.
+	?dimension crm:P2_has_type/rdfs:label ?qualifier.
+	?dimension crm:P90_has_value ?dvalue .
+	?dimension crm:P91_has_unit/rdfs:label ?unit.
   	BIND(CONCAT(STR(?dvalue)," ",?unit," ","(",?qualifier,")") as ?value )
 }
 

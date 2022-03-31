@@ -28,12 +28,9 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "condition_assessment_description".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "1300".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/custom/fc/photo>.
-
-  	 
-  		$subject crm:P67i_is_referred_to_by ?information_object.
-  		?information_object crm:P2_has_type <http://vocab.getty.edu/aat/300435425>.
-  		?information_object crm:P190_has_symbolic_content ?value .
-   	 
+}WHERE {	
+	?subject a <https://artresearch.net/resource/custom/fc/photo>.
+	$subject crm:P67i_is_referred_to_by ?information_object.
+	?information_object crm:P2_has_type <http://vocab.getty.edu/aat/300435425>.
+	?information_object crm:P190_has_symbolic_content ?value . 
 }

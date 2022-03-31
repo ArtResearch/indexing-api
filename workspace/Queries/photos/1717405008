@@ -28,10 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "photo_archive".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "620".
-}WHERE {	?subject a <https://artresearch.net/resource/custom/fc/photo>.
-
-  ?subject <https://artresearch.net/resource/fr/Photo_has_provider_Institution> ?value_uri .
-  ?value_uri  rdfs:label ?providerLabel.
-  BIND (?value_uri  as ?provider)
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}WHERE {	
+	?subject a <https://artresearch.net/resource/custom/fc/photo>.
+  	?subject <https://artresearch.net/resource/fr/Photo_has_provider_Institution>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }
