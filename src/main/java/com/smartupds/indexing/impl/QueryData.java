@@ -29,9 +29,9 @@ import org.eclipse.rdf4j.query.Binding;
 import org.eclipse.rdf4j.query.BindingSet;
 import org.eclipse.rdf4j.query.GraphQuery;
 import org.eclipse.rdf4j.query.GraphQueryResult;
+import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.query.TupleQuery;
 import org.eclipse.rdf4j.query.TupleQueryResult;
-import org.eclipse.rdf4j.query.QueryLanguage;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
 import org.eclipse.rdf4j.repository.sparql.SPARQLRepository;
 import org.json.simple.JSONArray;
@@ -163,9 +163,8 @@ public class QueryData implements Downloader {
         new File(indexfolder).mkdirs();
         String field_name = "";
         try {
-            int limit = 100000;
-            int counter = 0;     
-            int loop = 0;
+            int limit = 5000;
+            int counter = 0;    
             OutputStreamWriter writer = null;
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Initializing repository");
             repo.initialize();
@@ -174,9 +173,10 @@ public class QueryData implements Downloader {
             
             String order = "";
             ArrayList<String[]> statements = new ArrayList<>();  
+
             while(true){
-                loop++;
-                if (counter%limit==0 && loop==1){
+                if (counter%limit==0){
+
                     Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing graph query : \n".concat(query + " OFFSET " + counter + " LIMIT " + limit));
                     Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Query Hash : ".concat(""+Math.abs(query.hashCode())));
                     GraphQuery graph = conn.prepareGraphQuery(query + " OFFSET " + counter + " LIMIT " + limit);
@@ -189,13 +189,10 @@ public class QueryData implements Downloader {
                                      
                     while(result.hasNext()){
                         Statement stmt = result.next();
-                        if(stmt.getObject() instanceof IRI)
-                        {
+                        counter++;
+                        if(stmt.getObject() instanceof IRI)                        
                             writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n");
-//                            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "===".concat("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n"));
-                        }                    
                         else {
-//                            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "===".concat("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n"));
                             writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n");
                         }
                         if(stmt.getPredicate().toString().equals("http://www.researchspace.org/resource/system/fields/order")){
@@ -205,17 +202,16 @@ public class QueryData implements Downloader {
                         } else {
                             statements.add(new String[]{stmt.getSubject().stringValue(),stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"")});
                         }
-                        counter++;                        
+                                                
                     }
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Counter: ".concat(counter + ""));
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Loop: ".concat(loop + ""));
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "==============Counter: ".concat(counter + "\r\n"));
                     Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(constructFolder +"/"+ Math.abs(query.hashCode())+".n3"));
                     if (writer!=null)
                         writer.close();
                 }
                 else 
                 {
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "==============Else: ");
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "==============Else: \r\n");
                     break;   
                 }
             }
