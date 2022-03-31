@@ -162,82 +162,67 @@ public class QueryData implements Downloader {
         new File(constructFolder).mkdirs();
         new File(indexfolder).mkdirs();
         String field_name = "";
-        try {
-            int limit = 5000;
-            int counter = 0;   
-            boolean hasNext = true;
-            OutputStreamWriter writer = null;
+        OutputStreamWriter writer = null;
+        
+        try{
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Initializing repository");
             repo.initialize();
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Getting repository connection");
             RepositoryConnection conn = repo.getConnection();
-            
+
             String order = "";
             ArrayList<String[]> statements = new ArrayList<>();  
-         
 
-            while(true){
-                if (hasNext == true){
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing graph query : \n".concat(query + " OFFSET " + counter + " LIMIT " + limit));
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Query Hash : ".concat(""+Math.abs(query.hashCode())));
-                    GraphQuery graph = conn.prepareGraphQuery(query + " OFFSET " + counter + " LIMIT " + limit);
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluating graph query");
-                    GraphQueryResult result = graph.evaluate();
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Successful query evaluation");
-                    if (result.hasNext())
-                        writer = new OutputStreamWriter(new FileOutputStream(constructFolder +"/"+ Math.abs(query.hashCode())+"_"+counter+".n3",false),"UTF-8");
-                    else
-                        hasNext = false;                 
-                    while(result.hasNext()){
-                        Statement stmt = result.next();                        
-                        counter++;
-                        if(stmt.getObject() instanceof IRI)                        
-                            writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n");
-                        else {
-                            writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n");
-                        }
-                        if(stmt.getPredicate().toString().equals("http://www.researchspace.org/resource/system/fields/order")){
-                            order = stmt.getObject().stringValue();
-                        } else if (stmt.getPredicate().toString().equals("http://www.artresearch.net/custom/fieldLabel")){
-                            field_name = stmt.getObject().stringValue();
-                        } else {
-                            statements.add(new String[]{stmt.getSubject().stringValue(),stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"")});
-                        }
-                                                
-                    }
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "==============Counter: ".concat(counter + "\r\n"));
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(constructFolder +"/"+ Math.abs(query.hashCode())+".n3"));
-                    if (writer!=null)
-                        writer.close();
+            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing graph query : \n".concat(query));
+            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Query Hash : ".concat(""+Math.abs(query.hashCode())));
+            GraphQuery graph = conn.prepareGraphQuery(query);
+            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Evaluating graph query");
+            GraphQueryResult result = graph.evaluate();
+            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Successful query evaluation");
+            if (result.hasNext())
+                writer = new OutputStreamWriter(new FileOutputStream(constructFolder +"/"+ Math.abs(query.hashCode()) + ".n3",false),"UTF-8");
+
+            while(result.hasNext()){
+                Statement stmt = result.next();    
+                if(stmt.getObject() instanceof IRI)                        
+                    writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n");
+                else {
+                    writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> \"" + stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"") +"\".\n");
                 }
-                else 
-                {
-                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "==============Else: \r\n");
-                    break;   
+                if(stmt.getPredicate().toString().equals("http://www.researchspace.org/resource/system/fields/order")){
+                    order = stmt.getObject().stringValue();
+                } else if (stmt.getPredicate().toString().equals("http://www.artresearch.net/custom/fieldLabel")){
+                    field_name = stmt.getObject().stringValue();
+                } else {
+                    statements.add(new String[]{stmt.getSubject().stringValue(),stmt.getObject().stringValue().replace("\n", " ").replaceAll("\\\\(?=[^\\\"])", "").replace("\"", "\\\"")});
                 }
             }
+            
+            Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(constructFolder +"/"+ Math.abs(query.hashCode())+".n3"));
+            if (writer!=null)
+                writer.close();
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Shutting down repository");
             conn.close();
             repo.shutDown();
             if (statements.size()>0){
-                /* JSON Creator*/
-                JSONArray formats = new JSONArray();
-                for (String[] statement:statements){
-                    JSONObject format = new JSONObject();
-                    format.put("uri",statement[0]);
-                    format.put(field_name,statement[1]);
-                    format.put("field_score",order);
-                    format.put("id",Utils.uniqueID(order, field_name, statement[0]));
-                    formats.add(format);
-                }
-                Path path = Paths.get(indexfolder +"/"+ field_name +"_"+ Math.abs(query.hashCode())+".json");
-                File json = new File(path.getParent().toString());
-                json.mkdirs();
-                BufferedWriter writer_json = Files.newBufferedWriter(path);
-                writer_json.write(formats.toJSONString());
-                writer_json.close();
-                Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(indexfolder +"/"+ field_name +"_"+ Math.abs(query.hashCode())+".json"));
-            }
+                    /* JSON Creator*/
+                    JSONArray formats = new JSONArray();
+                    for (String[] statement:statements){
+                        JSONObject format = new JSONObject();
+                        format.put("uri",statement[0]);
+                        format.put(field_name,statement[1]);
+                        format.put("field_score",order);
+                        format.put("id",Utils.uniqueID(order, field_name, statement[0]));
+                        formats.add(format);
+                    }
+                    Path path = Paths.get(indexfolder +"/"+ field_name +"_"+ Math.abs(query.hashCode())+".json");
+                    File json = new File(path.getParent().toString());
+                    json.mkdirs();
+                    BufferedWriter writer_json = Files.newBufferedWriter(path);
+                    writer_json.write(formats.toJSONString());
+                    writer_json.close();
+                    Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "File Saved at: ".concat(indexfolder +"/"+ field_name +"_"+ Math.abs(query.hashCode())+".json"));
+            }        
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(QueryData.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
