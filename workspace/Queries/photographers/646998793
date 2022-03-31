@@ -28,16 +28,12 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "institution".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80008".
-}WHERE {	?subject owl:sameAs ?subject_p.
+}WHERE{	
+  ?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/photographer>.
-
-FILTER (!CONTAINS(STR(?subject_p),"nypl"))
-   
-    $subject crm:P107_is_current_or_former_member_of ?value_uri .
-   
+  $subject crm:P107_is_current_or_former_member_of ?value_uri .
+  ?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
   FILTER NOT EXISTS {
-    ?group crm:P2_has_type ?type.
-    ?type rdfs:label "National Group".
+    ?value_uri crm:P2_has_type/rdfs:label "National Group".
   }
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }
