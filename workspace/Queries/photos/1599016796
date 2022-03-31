@@ -28,12 +28,10 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "color_information".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "699".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/custom/fc/photo>.
-
-	  
-         	$subject crm:P43_has_dimension ?dimension .
-        	?dimension crm:P2_has_type <http://vocab.getty.edu/aat/300127013> .
-        	?dimension crm:P90_has_value ?value
+} WHERE {	
+	?subject a <https://artresearch.net/resource/custom/fc/photo>.
+	$subject crm:P43_has_dimension ?dimension .
+	?dimension crm:P2_has_type <http://vocab.getty.edu/aat/300127013> .
+	?dimension crm:P90_has_value ?value
      
 }

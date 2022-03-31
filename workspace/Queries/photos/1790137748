@@ -28,14 +28,8 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "shot_date".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "2700".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/custom/fc/photo>.
- 
-	 
-  		$subject crm:P128_carries ?visual_item.
-  		?visual_item crm:P128i_is_carried_by ?negative.
-  		?negative crm:P108i_was_produced_by ?production.
-  		?production crm:P4_has_time-span ?tm.
-  		?tm crm:P82_at_some_time_within ?value.
+} WHERE {
+	?subject a <https://artresearch.net/resource/custom/fc/photo>.
+	$subject crm:P128_carries/crm:P128i_is_carried_by/crm:P108i_was_produced_by/crm:P4_has_time-span/crm:P82_at_some_time_within ?value.
   	 
 }

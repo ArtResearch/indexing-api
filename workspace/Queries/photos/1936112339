@@ -28,13 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "photographer".
 	?subject <http://www.researchspace.org/resource/system/fields/order> "220".
-}WHERE 
-{	?subject a <https://artresearch.net/resource/custom/fc/photo>.
-
-  	 
-		?subject <https://artresearch.net/resource/fr/Photo_created_by_Photographer> ?value_uri .
-  	 
-  	BIND(IF( CONTAINS(STR(?value),"wiki"), "Wikidata", ?provLabel) AS ?providerLabel)
-    BIND(IF( CONTAINS(STR(?value),"wiki"), IRI("https://artresearch.net/resource/wikidata/source/Wikidata"), ?prov) AS ?provider)
-	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+} WHERE {	
+	?subject a <https://artresearch.net/resource/custom/fc/photo>.
+	?subject <https://artresearch.net/resource/fr/Photo_created_by_Photographer>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

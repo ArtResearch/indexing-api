@@ -28,18 +28,13 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "variant_attributions".
 	?subject_p <http://www.researchspace.org/resource/system/fields/order> "2530".
-}WHERE {	?subject owl:sameAs ?subject_p.
+}WHERE {	
+    ?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
-
-   
     $subject crm:P19i_motivated ?activity.
-        ?activity <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ?type.
-        ?type rdfs:label ?type_label.
-        ?activity <http://www.cidoc-crm.org/cidoc-crm/P01i_is_domain_of> ?domain.
-        ?domain <http://www.cidoc-crm.org/cidoc-crm/P02_has_range> ?range.
-        ?range rdfs:label ?range_label.
-        ?domain <http://www.cidoc-crm.org/cidoc-crm/P14.1_in_the_role_of> ?role.
-        ?role rdfs:label ?role_label.
-        BIND(CONCAT(?range_label," | Type: ",?type_label," | Role: ", ?role_label) AS ?value)
-         
+    ?activity <http://www.cidoc-crm.org/cidoc-crm/P2_has_type>/rdfs:label ?type_label.
+    ?activity <http://www.cidoc-crm.org/cidoc-crm/P01i_is_domain_of> ?domain.
+    ?domain <http://www.cidoc-crm.org/cidoc-crm/P02_has_range>/rdfs:label ?range_label.
+    ?domain <http://www.cidoc-crm.org/cidoc-crm/P14.1_in_the_role_of>/rdfs:label ?role_label.
+    BIND(CONCAT(?range_label," | Type: ",?type_label," | Role: ", ?role_label) AS ?value)
 }
