@@ -1,0 +1,39 @@
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "dimension".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "700".
+}WHERE 
+{	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/work>.
+
+	 
+		$subject crm:P43_has_dimension ?dimension.
+ 		?dimension rdfs:label ?value.
+  	 
+}

@@ -1,0 +1,2601 @@
+nohup: ignoring input
+Mar 28, 2022 2:12:30 PM com.smartupds.indexing.Main handleCommandLine
+INFO: Indexing Processing Started
+Mar 28, 2022 2:12:30 PM com.smartupds.indexing.impl.RepositoriesIndexGenerator indexResources
+INFO: START: Indexing repositories
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Configuring endpoint
+Mar 28, 2022 2:12:30 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Endpoint : http://213.171.209.34:10080/blazegraph/sparql
+Mar 28, 2022 2:12:30 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Initializing repository
+Mar 28, 2022 2:12:30 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Getting repository connection
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Preparing select query : 
+SELECT ?query ?datatype ?order ?name WHERE{    
+   ?field a <http://www.researchspace.org/resource/system/fields/Field>;
+   <http://www.researchspace.org/resource/system/fields/category> <http://www.researchspace.org/ontologies/platform/FieldCategories/repository_info>;
+   <http://www.researchspace.org/resource/system/fields/selectPattern> ?s.
+   ?s <http://spinrdf.org/sp#text> ?query.
+   ?field <http://www.researchspace.org/resource/system/fields/xsdDatatype> ?datatype.
+   ?field <http://www.researchspace.org/resource/system/fields/order> ?order.
+   ?field <http://www.w3.org/2000/01/rdf-schema#label> ?name.
+}
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Evaluating select query
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "title".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "100".
+}WHERE 
+{	
+  ?subject a <https://artresearch.net/resource/fc/institution>.
+  ?subject rdfs:label ?value.
+} LIMIT 1
+
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1199410146
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1199410146.n3
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/json/title_1199410146.json
+Configuring endpoint
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Endpoint : http://213.171.209.34:10080/blazegraph/sparql
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Initializing repository
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Getting repository connection
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Preparing select query : 
+SELECT ?query ?datatype ?order ?name WHERE{    
+   ?field a <http://www.researchspace.org/resource/system/fields/Field>;
+   <http://www.researchspace.org/resource/system/fields/category> <http://www.researchspace.org/ontologies/platform/FieldCategories/person_info>;
+   <http://www.researchspace.org/resource/system/fields/selectPattern> ?s.
+   ?s <http://spinrdf.org/sp#text> ?query.
+   ?field <http://www.researchspace.org/resource/system/fields/xsdDatatype> ?datatype.
+   ?field <http://www.researchspace.org/resource/system/fields/order> ?order.
+   ?field <http://www.w3.org/2000/01/rdf-schema#label> ?name.
+}
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Evaluating select query
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "name".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "1".
+}WHERE 
+{	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    ?subject rdfs:label ?value.
+   
+}  LIMIT 1
+
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 153982595
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/153982595.n3
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/json/name_153982595.json
+Configuring endpoint
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "name".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "1".
+}WHERE 
+{	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    ?subject rdfs:label ?value.
+   
+}  LIMIT 1
+
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 581450625
+Mar 28, 2022 2:12:31 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/581450625.n3
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/json/name_581450625.json
+Configuring endpoint
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "partner".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "900009".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_partner_of_Person> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 523274809
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/523274809.n3
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "partner".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "900009".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_partner_of_Person> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1335441277
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1335441277.n3
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "roles".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80005".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Role> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 2073566244
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/2073566244.n3
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "roles".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80005".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Role> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1085359706
+Mar 28, 2022 2:12:32 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1085359706.n3
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "active".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80006".
+}WHERE 
+{	?subject a <https://artresearch.net/resource/fc/institution>.
+ 
+   
+  	$subject crm:P14i_Performed ?floruit.
+  	?floruit crm:P4_has_time-span ?tm.
+  	?tm crm:P82_at_some_time_within ?value .
+   
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1690823456
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1690823456.n3
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "active".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80006".
+}WHERE 
+{	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+ 
+   
+  	$subject crm:P14i_Performed ?floruit.
+  	?floruit crm:P4_has_time-span ?tm.
+  	?tm crm:P82_at_some_time_within ?value .
+   
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1820777536
+Mar 28, 2022 2:12:33 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1820777536.n3
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "residence_location".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "3300".
+}WHERE 
+{	?subject a <https://artresearch.net/resource/fc/institution>.
+ 
+	 
+#  ?subject <https://artresearch.net/resource/fr/Institution_from_Place> ?value_uri .
+  		$subject crm:P74_has_current_or_former_residence ?value_uri .
+  	 
+    ?value_uri  rdfs:label ?label.
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1055879981
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1055879981.n3
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "residence_location".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "3300".
+}WHERE 
+{	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+ 
+	 
+#  ?subject <https://artresearch.net/resource/fr/Institution_from_Place> ?value_uri .
+  		$subject crm:P74_has_current_or_former_residence ?value_uri .
+  	 
+    ?value_uri  rdfs:label ?label.
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 274795131
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/274795131.n3
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/json/residence_location_274795131.json
+Configuring endpoint
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "institution".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80008".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject crm:P107_is_current_or_former_member_of ?value_uri .
+   
+  FILTER NOT EXISTS {
+    ?group crm:P2_has_type ?type.
+    ?type rdfs:label "National Group".
+  }
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 599346153
+Mar 28, 2022 2:12:34 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/599346153.n3
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "institution".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80008".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject crm:P107_is_current_or_former_member_of ?value_uri .
+   
+  FILTER NOT EXISTS {
+    ?group crm:P2_has_type ?type.
+    ?type rdfs:label "National Group".
+  }
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1962442647
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1962442647.n3
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "date_of_birth".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "800011".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+    
+   
+    ?subject <https://artresearch.net/resource/fr/Person_has_Date_of_Birth>|<https://artresearch.net/resource/fr/Artist_has_Date_of_Birth> ?date .
+   
+  BIND(IF(datatype(?date)=xsd:date,STR(xsd:integer(YEAR(?date))),STR(xsd:integer(?date))) AS ?value)
+}  LIMIT 1
+
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 871339645
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/871339645.n3
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "date_of_birth".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "800011".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+    
+   
+    ?subject <https://artresearch.net/resource/fr/Person_has_Date_of_Birth>|<https://artresearch.net/resource/fr/Artist_has_Date_of_Birth> ?date .
+   
+  BIND(IF(datatype(?date)=xsd:date,STR(xsd:integer(YEAR(?date))),STR(xsd:integer(?date))) AS ?value)
+}  LIMIT 1
+
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1828080847
+Mar 28, 2022 2:12:35 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1828080847.n3
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "date_of_death".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "800031".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+    
+         
+            ?subject <https://artresearch.net/resource/fr/Person_has_Date_of_Death>|
+             <https://artresearch.net/resource/fr/Artist_has_Date_of_Death> ?date .
+         
+    BIND(IF(datatype(?date)=xsd:date,STR(xsd:integer(YEAR(?date))),STR(xsd:integer(?date))) AS ?value)
+}  LIMIT 1
+
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 870264204
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/870264204.n3
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "date_of_death".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "800031".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+    
+         
+            ?subject <https://artresearch.net/resource/fr/Person_has_Date_of_Death>|
+             <https://artresearch.net/resource/fr/Artist_has_Date_of_Death> ?date .
+         
+    BIND(IF(datatype(?date)=xsd:date,STR(xsd:integer(YEAR(?date))),STR(xsd:integer(?date))) AS ?value)
+}  LIMIT 1
+
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1746493074
+Mar 28, 2022 2:12:36 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1746493074.n3
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "gender".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80010".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Gender>  ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1508535879
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1508535879.n3
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "gender".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80010".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Gender>  ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 86066893
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/86066893.n3
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "nationality".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80009".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Nationality> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1594871195
+Mar 28, 2022 2:12:37 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1594871195.n3
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "nationality".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80009".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Nationality> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1711777745
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1711777745.n3
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "place_of_birth".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80002".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+    
+	 $subject <https://artresearch.net/resource/fr/Person_has_Place_of_Birth> ?value_uri .
+   
+  BIND(IF( CONTAINS(STR(?value),"geonames"), "Geonames", ?provLabel) AS ?providerLabel)
+  BIND(IF( CONTAINS(STR(?value),"geonames"), IRI("https://artresearch.net/resource/geonames/source/Geonames"), ?prov) AS ?provider)
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1208429816
+Mar 28, 2022 2:12:38 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1208429816.n3
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "place_of_birth".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80002".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+    
+	 $subject <https://artresearch.net/resource/fr/Person_has_Place_of_Birth> ?value_uri .
+   
+  BIND(IF( CONTAINS(STR(?value),"geonames"), "Geonames", ?provLabel) AS ?providerLabel)
+  BIND(IF( CONTAINS(STR(?value),"geonames"), IRI("https://artresearch.net/resource/geonames/source/Geonames"), ?prov) AS ?provider)
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 703530168
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/703530168.n3
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "place_of_death".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80004".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Place_of_Death> ?value_uri .
+   
+  BIND(IF( CONTAINS(STR(?value),"geonames"), "Geonames", ?provLabel) AS ?providerLabel)
+  BIND(IF( CONTAINS(STR(?value),"geonames"), IRI("https://artresearch.net/resource/geonames/source/Geonames"), ?prov) AS ?provider)
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1067238267
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1067238267.n3
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "place_of_death".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80004".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Place_of_Death> ?value_uri .
+   
+  BIND(IF( CONTAINS(STR(?value),"geonames"), "Geonames", ?provLabel) AS ?providerLabel)
+  BIND(IF( CONTAINS(STR(?value),"geonames"), IRI("https://artresearch.net/resource/geonames/source/Geonames"), ?prov) AS ?provider)
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 178783153
+Mar 28, 2022 2:12:39 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/178783153.n3
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "title".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "100".
+}WHERE 
+{	
+  ?subject a <https://artresearch.net/resource/fc/institution>.
+  ?subject rdfs:label ?value.
+} LIMIT 1
+
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1199410146
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1199410146.n3
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/json/title_1199410146.json
+Configuring endpoint
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Endpoint : http://213.171.209.34:10080/blazegraph/sparql
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Initializing repository
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Getting repository connection
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Preparing select query : 
+SELECT ?query ?datatype ?order ?name WHERE{    
+   ?field a <http://www.researchspace.org/resource/system/fields/Field>;
+   <http://www.researchspace.org/resource/system/fields/category> <http://www.researchspace.org/ontologies/platform/FieldCategories/external_info>;
+   <http://www.researchspace.org/resource/system/fields/selectPattern> ?s.
+   ?s <http://spinrdf.org/sp#text> ?query.
+   ?field <http://www.researchspace.org/resource/system/fields/xsdDatatype> ?datatype.
+   ?field <http://www.researchspace.org/resource/system/fields/order> ?order.
+   ?field <http://www.w3.org/2000/01/rdf-schema#label> ?name.
+}
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Evaluating select query
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadPatterns
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "apprentice".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "31760".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+  	?subject <https://artresearch.net/resource/fr/Person_was_apprentice_of_Person> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1108925698
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1108925698.n3
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "apprentice".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "31760".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+  	?subject <https://artresearch.net/resource/fr/Person_was_apprentice_of_Person> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 827352544
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/827352544.n3
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "assistants".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "31770".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_assisted_by_Person> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1915179216
+Mar 28, 2022 2:12:40 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1915179216.n3
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "assistants".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "31770".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_assisted_by_Person> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 86948004
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/86948004.n3
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "events".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "31800".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    ?subject <https://artresearch.net/resource/fr/Artist_participated_Event> ?event.
+    ?event <https://artresearch.net/resource/fr/Event_has_Type> ?event_type.
+    ?event <https://artresearch.net/resource/fr/Event_at_Place> ?event_place.
+    ?event_type <http://www.w3.org/2000/01/rdf-schema#label> ?event_type_label.
+    ?event_place <http://www.w3.org/2000/01/rdf-schema#label> ?event_place_label.
+    BIND (CONCAT(?event_type_label, " at " ,?event_place_label) AS ?value )
+   
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1115034810
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1115034810.n3
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "events".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "31800".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    ?subject <https://artresearch.net/resource/fr/Artist_participated_Event> ?event.
+    ?event <https://artresearch.net/resource/fr/Event_has_Type> ?event_type.
+    ?event <https://artresearch.net/resource/fr/Event_at_Place> ?event_place.
+    ?event_type <http://www.w3.org/2000/01/rdf-schema#label> ?event_type_label.
+    ?event_place <http://www.w3.org/2000/01/rdf-schema#label> ?event_place_label.
+    BIND (CONCAT(?event_type_label, " at " ,?event_place_label) AS ?value )
+   
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1565322242
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1565322242.n3
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "sexual_orientation".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "315000".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Sexual_Orientation>  ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1934968207
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1934968207.n3
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "sexual_orientation".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "315000".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Sexual_Orientation>  ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1448706573
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1448706573.n3
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "tutors".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "31760".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_apprentice_of_Person> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 2129015474
+Mar 28, 2022 2:12:41 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/2129015474.n3
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "tutors".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "31760".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_apprentice_of_Person> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 555993108
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/555993108.n3
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "date_of_death".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "800031".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+    
+         
+            ?subject <https://artresearch.net/resource/fr/Person_has_Date_of_Death>|
+             <https://artresearch.net/resource/fr/Artist_has_Date_of_Death> ?date .
+         
+    BIND(IF(datatype(?date)=xsd:date,STR(xsd:integer(YEAR(?date))),STR(xsd:integer(?date))) AS ?value)
+}  LIMIT 1
+
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 870264204
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/870264204.n3
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "date_of_death".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "800031".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+    
+         
+            ?subject <https://artresearch.net/resource/fr/Person_has_Date_of_Death>|
+             <https://artresearch.net/resource/fr/Artist_has_Date_of_Death> ?date .
+         
+    BIND(IF(datatype(?date)=xsd:date,STR(xsd:integer(YEAR(?date))),STR(xsd:integer(?date))) AS ?value)
+}  LIMIT 1
+
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1746493074
+Mar 28, 2022 2:12:42 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1746493074.n3
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "description".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "31600".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Description> ?value.
+   
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1345053309
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1345053309.n3
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "description".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "31600".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Description> ?value.
+   
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1315261833
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1315261833.n3
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "gender".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80010".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Gender>  ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1508535879
+Mar 28, 2022 2:12:43 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1508535879.n3
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "gender".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80010".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Gender>  ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 86066893
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/86066893.n3
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "nationality".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "80009".
+}WHERE {	?subject a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Nationality> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1594871195
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1594871195.n3
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+PREFIX : <http://www.researchspace.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>
+PREFIX crminfluence: <http://www.cidoc-crm.org/cidoc-crm/influence/>
+PREFIX crmarchaeo: <http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/>
+PREFIX rshelp: <http://researchspace.org/help/>
+PREFIX ontodia: <http://ontodia.org/schema/v1#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rso: <http://www.researchspace.org/ontology/>
+PREFIX sp: <http://spinrdf.org/sp#>
+PREFIX Help: <http://help.researchspace.org/resource/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX Admin: <http://www.researchspace.org/resource/admin/>
+PREFIX crmgeo: <http://www.ics.forth.gr/isl/CRMgeo/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crmba: <http://www.cidoc-crm.org/cidoc-crm/CRMba/>
+PREFIX crmsci: <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX User: <http://www.researchspace.org/resource/user/>
+PREFIX bds: <http://www.bigdata.com/rdf/search#>
+PREFIX Platform: <http://www.researchspace.org/resource/system/>
+PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
+CONSTRUCT {
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "nationality".
+	?subject_p <http://www.researchspace.org/resource/system/fields/order> "80009".
+}WHERE {	?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/institution>.
+
+   
+    $subject <https://artresearch.net/resource/fr/Person_has_Nationality> ?value_uri .
+   
+	?value_uri <http://www.w3.org/2000/01/rdf-schema#label> ?value.
+}
+ LIMIT 1
+
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1711777745
+Mar 28, 2022 2:12:44 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1711777745.n3
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Configuring endpoint
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Initializing repository
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Getting repository connection
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Preparing graph query : 
+CONSTRUCT {
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "title".
+	?subject <http://www.researchspace.org/resource/system/fields/order> "100".
+}WHERE 
+{	
+  ?subject a <https://artresearch.net/resource/fc/institution>.
+  ?subject rdfs:label ?value.
+} LIMIT 1
+
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Query Hash : 1199410146
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Evaluating graph query
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Successful query evaluation
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/construct/1199410146.n3
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: Shutting down repository
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.QueryData downloadConstruct
+INFO: File Saved at: workspace/Output/Indexing/repositories/json/title_1199410146.json
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.common.Utils merge
+SEVERE: null
+Unexpected character (n) at position 1.
+	at org.json.simple.parser.Yylex.yylex(Yylex.java:610)
+	at org.json.simple.parser.JSONParser.nextToken(JSONParser.java:269)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
+	at org.json.simple.parser.JSONParser.parse(JSONParser.java:92)
+	at com.smartupds.indexing.common.Utils.merge(Utils.java:376)
+	at com.smartupds.indexing.impl.RepositoriesIndexGenerator.indexResources(RepositoriesIndexGenerator.java:38)
+	at com.smartupds.indexing.Main.handleCommandLine(Main.java:90)
+	at com.smartupds.indexing.Main.main(Main.java:49)
+
+Json:  84
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.common.Utils split
+INFO: Splitting Multiple Files Started.
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.common.Utils split
+INFO: Process at 100 %
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.RepositoriesIndexGenerator indexResources
+INFO: FINISH: Indexing repositories in 15 secs
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.Main handleCommandLine
+INFO: Indexing Processing Completed

@@ -164,7 +164,8 @@ public class QueryData implements Downloader {
         String field_name = "";
         try {
             int limit = 5000;
-            int counter = 0;    
+            int counter = 0;   
+            boolean hasNext = true;
             OutputStreamWriter writer = null;
             Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Initializing repository");
             repo.initialize();
@@ -173,10 +174,10 @@ public class QueryData implements Downloader {
             
             String order = "";
             ArrayList<String[]> statements = new ArrayList<>();  
+         
 
             while(true){
-                if (counter%limit==0){
-
+                if (hasNext == true){
                     Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Preparing graph query : \n".concat(query + " OFFSET " + counter + " LIMIT " + limit));
                     Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Query Hash : ".concat(""+Math.abs(query.hashCode())));
                     GraphQuery graph = conn.prepareGraphQuery(query + " OFFSET " + counter + " LIMIT " + limit);
@@ -185,10 +186,10 @@ public class QueryData implements Downloader {
                     Logger.getLogger(QueryData.class.getName()).log(Level.INFO, "Successful query evaluation");
                     if (result.hasNext())
                         writer = new OutputStreamWriter(new FileOutputStream(constructFolder +"/"+ Math.abs(query.hashCode())+"_"+counter+".n3",false),"UTF-8");
-
-                                     
+                    else
+                        hasNext = false;                 
                     while(result.hasNext()){
-                        Statement stmt = result.next();
+                        Statement stmt = result.next();                        
                         counter++;
                         if(stmt.getObject() instanceof IRI)                        
                             writer.write("<"+stmt.getSubject()+"> <"+stmt.getPredicate()+"> <" + stmt.getObject() +">. \n");
