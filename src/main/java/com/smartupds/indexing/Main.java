@@ -65,17 +65,15 @@ public class Main {
         options.addOption(index)
                .addOption(type)
                .addOption(core)
-               .addOption(weights)
-               .addOption(download);
+               .addOption(weights);
+//               .addOption(download);
     }
 
     private static void handleCommandLine(CommandLine line) throws IOException{
        
         if(line.hasOption("i") && line.hasOption("type")){
             Logger.getLogger(Main.class.getName()).log(Level.INFO, "Indexing Processing Started");
-            IndexGenerator indexGenerator = null;
-            if(line.hasOption("core"))
-                Resources.setSolrCore(line.getOptionValue("core"));
+            IndexGenerator indexGenerator = null;            
             /*Index Resources for artists*/
             if (line.getOptionValue("t").equals("artists")) 
                 indexGenerator = ArtistIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));                
@@ -95,13 +93,15 @@ public class Main {
              /*Index Resources for repositories*/
             if (line.getOptionValue("t").equals("repositories"))
                 indexGenerator = RepositoriesIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
+                    
+//            indexGenerator.indexResources(Resources.SOLR_CORE);
             
-            /*Download queries else perform usual functionality*/
-            if (line.hasOption("d"))            
-               indexGenerator.downloadQueries();            
-            else
-               indexGenerator.indexResources(Resources.SOLR_CORE);
-    
+            if(line.hasOption("c"))
+            {
+                Resources.setSolrCore(line.getOptionValue("core"));
+                indexGenerator.updateSolarIndex();
+            }
+            
         } else if(line.hasOption("w")){
             Logger.getLogger(Main.class.getName()).log(Level.INFO, "Change weights Processing Started");
             try {

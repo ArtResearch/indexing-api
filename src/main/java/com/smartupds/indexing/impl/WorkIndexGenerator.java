@@ -27,27 +27,10 @@ public class WorkIndexGenerator implements IndexGenerator{
     public void indexResources(String core_name) {
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing arworks");
-        
-//        Utils.downloadSubjectFields(Resources.CATEGORY_ARTWORK_MONUMENT, Resources.TYPE_WORK,
-//                this.configurationFile, Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_CREATOR_ATTRIBUTION,Resources.TYPE_WORK,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_PHYSICAL_PROPERTIES,Resources.TYPE_WORK,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_PROVENANCE,Resources.TYPE_WORK,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_SUBJECTS,Resources.TYPE_WORK,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_DATING,Resources.TYPE_WORK,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-//        Utils.downloadSubjectFields(Resources.CATEGORY_REFERENCES,Resources.TYPE_WORK,
-//                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON);
-          Utils.downloadSubjectFieldsDir(this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
 
+//        Utils.downloadSubjectFieldsDir(this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
 //        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
 //        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED);
-//        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_FIXED,Resources.SOLR_CORE);
-//        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED_SPLIT,Resources.SOLR_ARTWORKS_CORE);
         
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
@@ -60,6 +43,8 @@ public class WorkIndexGenerator implements IndexGenerator{
 
     public void downloadQueries()
     {
+        long start = System.nanoTime();
+        Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "START: Downloading queries");
         Utils.downloadQueries(Resources.CATEGORY_ARTWORK_MONUMENT, Resources.TYPE_WORK,
             this.configurationFile, Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
         Utils.downloadQueries(Resources.CATEGORY_CREATOR_ATTRIBUTION,Resources.TYPE_WORK,
@@ -74,5 +59,19 @@ public class WorkIndexGenerator implements IndexGenerator{
             this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
         Utils.downloadQueries(Resources.CATEGORY_REFERENCES,Resources.TYPE_WORK,
             this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_WORKS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON, Resources.WORKS);
+        long stop = System.nanoTime();
+        long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
+        Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Downloading finished in {0} secs", time);
+    }
+
+    @Override
+    public void updateSolarIndex() {  
+        long start = System.nanoTime();
+        Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "START: Updating artworks index");
+        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_FIXED,Resources.SOLR_CORE);
+        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED_SPLIT,Resources.SOLR_ARTWORKS_CORE);
+        long stop = System.nanoTime();
+        long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
+        Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Indexing artworks completed in {0} secs", time);
     }
 }

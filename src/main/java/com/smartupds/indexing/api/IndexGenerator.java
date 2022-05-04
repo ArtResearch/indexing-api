@@ -18,4 +18,5 @@ public interface IndexGenerator {
      */
     public void indexResources(String core_name);
     public void downloadQueries();
+    public void updateSolarIndex();
 }
