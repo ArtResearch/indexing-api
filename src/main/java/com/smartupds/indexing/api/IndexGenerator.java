@@ -17,6 +17,11 @@ public interface IndexGenerator {
      * @param core_name
      */
     public void indexResources(String core_name);
-    public void downloadQueries();
-    public void updateSolarIndex();
+    public void downloadResources();
+    /** This method is responsible for adding indexes to resources for a particular 
+     * knowledge base (e.g. a triplestore).
+     * 
+     * @param core_name
+     */
+    public void uploadResources(String core_name);
 }

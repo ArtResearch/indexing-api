@@ -71,7 +71,7 @@ public class Utils {
 
      public static void downloadSubjectFieldsDir(File configurationfile, String constructFolder, String indexfolder, String field) {
         try {
-            ArrayList<String> constructQueries = new ArrayList<String>();
+            ArrayList<String> constructQueries = new ArrayList<>();
             for(File file: new File(Resources.FOLDER_QUERIES + "/" + field).listFiles()){                
                 String fileContent = new String(Files.readAllBytes(Paths.get(file.getCanonicalPath())), StandardCharsets.UTF_8);
                 constructQueries.add(fileContent);
