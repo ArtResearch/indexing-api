@@ -48,7 +48,6 @@ public class Main {
 //            args = new String [] {"-i", "-type", "photographers", "-core", "photographers_v5"};
 //            args = new String [] {"-i", "-type", "repositories", "-core", "repositories_v5"};
 //            args = new String [] {"-i", "-type", "photos", "-core", "photos_v5"};
-//          args = new String [] {"-d"}
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);
         } catch (ParseException ex) {
@@ -66,36 +65,37 @@ public class Main {
                .addOption(type)
                .addOption(core)
                .addOption(weights);
-//               .addOption(download);
     }
 
     private static void handleCommandLine(CommandLine line) throws IOException{
        
         if(line.hasOption("i") && line.hasOption("type")){
             Logger.getLogger(Main.class.getName()).log(Level.INFO, "Indexing Processing Started");
-            IndexGenerator indexGenerator = null;            
-            /*Index Resources for artists*/
-            if (line.getOptionValue("t").equals("artists")) 
-                indexGenerator = ArtistIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));                
-            
-            /*Index Resources for work*/
-            if (line.getOptionValue("t").equals("artworks"))
-                indexGenerator = WorkIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
+            IndexGenerator indexGenerator = null;   
+            if (line.hasOption("t")){
+                /*Index Resources for artists*/
+                if (line.getOptionValue("t").equals("artists")) 
+                    indexGenerator = ArtistIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));                
 
-            /*Index Resources for photos*/
-            if (line.getOptionValue("t").equals("photos"))
-                indexGenerator = PhotoIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
- 
-            /*Index Resources for photographers*/
-            if (line.getOptionValue("t").equals("photographers"))
-                indexGenerator = PhotographersIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
-            
-             /*Index Resources for repositories*/
-            if (line.getOptionValue("t").equals("repositories"))
-                indexGenerator = RepositoriesIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
-                    
-//            indexGenerator.indexResources(Resources.SOLR_CORE);
-            
+                /*Index Resources for work*/
+                if (line.getOptionValue("t").equals("artworks"))
+                    indexGenerator = WorkIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
+
+                /*Index Resources for photos*/
+                if (line.getOptionValue("t").equals("photos"))
+                    indexGenerator = PhotoIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
+
+                /*Index Resources for photographers*/
+                if (line.getOptionValue("t").equals("photographers"))
+                    indexGenerator = PhotographersIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
+
+                 /*Index Resources for repositories*/
+                if (line.getOptionValue("t").equals("repositories"))
+                    indexGenerator = RepositoriesIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
+
+                indexGenerator.indexResources(Resources.SOLR_CORE);
+            }
+                        
             if(line.hasOption("c"))
             {
                 Resources.setSolrCore(line.getOptionValue("core"));

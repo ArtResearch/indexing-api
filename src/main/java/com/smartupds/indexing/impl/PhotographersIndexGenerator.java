@@ -27,9 +27,9 @@ public class PhotographersIndexGenerator  implements IndexGenerator{
     public void indexResources(String core_name) {
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing photographers");
-//        Utils.downloadSubjectFieldsDir(this.configurationFile, Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON, Resources.PHOTOGRAPHERS);
-//        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED);        
-//        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED);
+        Utils.downloadSubjectFieldsDir(this.configurationFile, Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON, Resources.PHOTOGRAPHERS);
+        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED);        
+        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOGRAPHERS_JSON_MERGED);
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
         Logger.getLogger(ArtistIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Indexing photographers in {0} secs", time);

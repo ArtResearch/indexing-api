@@ -174,6 +174,7 @@ public class Resources {
     public static String SOLR_ARTISTS_CORE = "artists_v5";
     public static String SOLR_PHOTOS_CORE = "photos_v5";
     public static String SOLR_PHOTOGRAPHERS_CORE = "photographers_v5";
+    public static String SOLR_REPOS_CORE = "repositories_v5";
     public static final String SOLR_SERVER = "http://localhost:8983/solr/";
 
     // REQUESTS

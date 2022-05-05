@@ -29,9 +29,9 @@ public class PhotoIndexGenerator  implements IndexGenerator{
     public void indexResources(String core_name) {
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing photographs");
-//        Utils.downloadSubjectFieldsDir(this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.PHOTOS);
-//        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
-//        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
+        Utils.downloadSubjectFieldsDir(this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.PHOTOS);
+        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
+        Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
         Logger.getLogger(ArtistIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Indexing photographs in {0} secs", time);
@@ -40,7 +40,8 @@ public class PhotoIndexGenerator  implements IndexGenerator{
     public static PhotoIndexGenerator create(File configurationfile){
         return new PhotoIndexGenerator(configurationfile);
     }
-
+    
+    @Override
     public void downloadQueries() 
     {
         long start = System.nanoTime();
@@ -67,8 +68,7 @@ public class PhotoIndexGenerator  implements IndexGenerator{
     @Override
     public void updateSolarIndex() {
         long start = System.nanoTime();
-        Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "START: Updating photographs index");        
-        Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_SPLIT,Resources.SOLR_PHOTOS_CORE);
+        Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "START: Updating photographs index");
         Utils.updateSolrIndex(Resources.TYPE_PHOTO,Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED_SPLIT,Resources.SOLR_PHOTOS_CORE);
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
