@@ -26,7 +26,7 @@ public class ArtistIndexGenerator implements IndexGenerator {
     }
 
     @Override
-    public void indexResources(String core_name) {
+    public void downloadResources() {
         long start = System.nanoTime();
         Logger.getLogger(ArtistIndexGenerator.class.getName()).log(Level.INFO, "START: Indexing Artists");      
         Utils.downloadSubjectFieldsDir(this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON, Resources.ARTISTS);
@@ -42,25 +42,18 @@ public class ArtistIndexGenerator implements IndexGenerator {
     }
 
     @Override
-    public void downloadQueries() {
-        long start = System.nanoTime();
-        Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "START: Downloading queries");
-        Utils.downloadQueries(Resources.CATEGORY_PERSON_INFO, Resources.TYPE_ARTIST,
-                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON, Resources.ARTISTS);
-        Utils.downloadQueries(Resources.CATEGORY_PERSON_RELATIONSHIPS, Resources.TYPE_ARTIST,
-                this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_CONSTRUCT,Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON, Resources.ARTISTS);
-        long stop = System.nanoTime();
-        long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
-        Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Downloading finished in {0} secs", time);
-    }
-
-    @Override
-    public void updateSolarIndex() {
+    public void uploadResources() {
         long start = System.nanoTime();
         Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "START: Updating artists index");     
-        Utils.updateSolrIndex(Resources.TYPE_ARTIST, Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_MERGED_SPLIT, Resources.SOLR_ARTISTS_CORE);
+        Utils.updateSolrIndex(Resources.TYPE_ARTIST, Resources.FOLDER_OUTPUT_INDEXING_ARTISTS_JSON_MERGED_SPLIT, Resources.SOLR_CORE);
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
         Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Indexing artists completed in {0} secs", time);
+    }
+
+    @Override
+    public void indexResources() {
+        this.downloadResources();
+        this.uploadResources();
     }
 }

@@ -14,14 +14,14 @@ public interface IndexGenerator {
     /** This method is responsible for adding indexes to resources for a particular 
      * knowledge base (e.g. a triplestore).
      * 
-     * @param core_name
+     * @param coreName
      */
-    public void indexResources(String core_name);
+    public void indexResources(String coreName);
     public void downloadResources();
     /** This method is responsible for adding indexes to resources for a particular 
      * knowledge base (e.g. a triplestore).
      * 
-     * @param core_name
+     * @param coreName
      */
-    public void uploadResources(String core_name);
+    public void uploadeResources();
 }

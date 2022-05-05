@@ -60,7 +60,7 @@ public class Main {
         Option download = new Option("d", "download", false,"Flag to index data.");
         Option upload = new Option("u", "upload", false,"Flag to index data.");
         Option type = new Option("t", "type", true,"Type to index: -t [type].");
-        Option core = new Option("c", "core", true,"Core to add data: -c [core_name].");
+        Option core = new Option("c", "core", true,"Core to add data: -c [coreName].");
         
         type.setRequired(true);
         
@@ -101,9 +101,9 @@ public class Main {
                 if (line.hasOption("d"))
                     indexGenerator.downloadResources();
                 else if (line.hasOption("u"))
-                    indexGenerator.uploadResources(Resources.SOLR_CORE);
+                    indexGenerator.uploadResources();
                 else if (line.hasOption("i"))
-                    indexGenerator.indexResources(Resources.SOLR_CORE);
+                    indexGenerator.downloadResources();
             }
             
         } else {

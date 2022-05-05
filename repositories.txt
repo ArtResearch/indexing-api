@@ -1,7 +1,7 @@
 nohup: ignoring input
 Mar 28, 2022 2:12:30 PM com.smartupds.indexing.Main handleCommandLine
 INFO: Indexing Processing Started
-Mar 28, 2022 2:12:30 PM com.smartupds.indexing.impl.RepositoriesIndexGenerator indexResources
+Mar 28, 2022 2:12:30 PM com.smartupds.indexing.impl.RepositoriesIndexGenerator downloadResources
 INFO: START: Indexing repositories
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
@@ -2586,7 +2586,7 @@ Unexpected character (n) at position 1.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:92)
 	at com.smartupds.indexing.common.Utils.merge(Utils.java:376)
-	at com.smartupds.indexing.impl.RepositoriesIndexGenerator.indexResources(RepositoriesIndexGenerator.java:38)
+	at com.smartupds.indexing.impl.RepositoriesIndexGenerator.downloadResources(RepositoriesIndexGenerator.java:38)
 	at com.smartupds.indexing.Main.handleCommandLine(Main.java:90)
 	at com.smartupds.indexing.Main.main(Main.java:49)
 
@@ -2595,7 +2595,7 @@ Mar 28, 2022 2:12:45 PM com.smartupds.indexing.common.Utils split
 INFO: Splitting Multiple Files Started.
 Mar 28, 2022 2:12:45 PM com.smartupds.indexing.common.Utils split
 INFO: Process at 100 %
-Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.RepositoriesIndexGenerator indexResources
+Mar 28, 2022 2:12:45 PM com.smartupds.indexing.impl.RepositoriesIndexGenerator downloadResources
 INFO: FINISH: Indexing repositories in 15 secs
 Mar 28, 2022 2:12:45 PM com.smartupds.indexing.Main handleCommandLine
 INFO: Indexing Processing Completed

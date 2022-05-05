@@ -169,12 +169,7 @@ public class Resources {
 
 // SERVER
 //    public static final String SOLR_SERVER = "http://213.171.209.34:8983/solr/";
-    public static String SOLR_CORE = "photographers_v5";
-    public static String SOLR_ARTWORKS_CORE = "artworks_v5";
-    public static String SOLR_ARTISTS_CORE = "artists_v5";
-    public static String SOLR_PHOTOS_CORE = "photos_v5";
-    public static String SOLR_PHOTOGRAPHERS_CORE = "photographers_v5";
-    public static String SOLR_REPOS_CORE = "repositories_v5";
+    public static String SOLR_CORE = "test";
     public static final String SOLR_SERVER = "http://localhost:8983/solr/";
 
     // REQUESTS
@@ -199,8 +194,8 @@ public class Resources {
         }
     }
 
-    public static void setSolrCore(String core_name) {
-        SOLR_CORE = core_name;
+    public static void setSolrCore(String coreName) {
+        SOLR_CORE = coreName;
     }
 
     public static void setLabelQuery(String type, String addFilter) {

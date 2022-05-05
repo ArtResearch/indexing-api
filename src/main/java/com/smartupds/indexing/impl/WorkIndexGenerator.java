@@ -36,19 +36,19 @@ public class WorkIndexGenerator implements IndexGenerator{
     }
     
     @Override
-    public void uploadResources(String core_name) {  
+    public void uploadeResources() {  
         long start = System.nanoTime();
         Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "START: Updating artworks index");
-        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED_SPLIT,Resources.SOLR_ARTWORKS_CORE);
+        Utils.updateSolrIndex(Resources.TYPE_WORK,Resources.FOLDER_OUTPUT_INDEXING_WORKS_JSON_MERGED_SPLIT,Resources.SOLR_CORE);
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
         Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Indexing artworks completed in {0} secs", time);
     }
 
     @Override
-    public void indexResources(String core_name) {
+    public void indexResources() {
         this.downloadResources();
-        this.uploadResources(core_name);
+        this.uploadResources();
     }
     
     public static WorkIndexGenerator create(File configurationfile){
