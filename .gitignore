@@ -6,3 +6,5 @@ safe.zip
 workspace_d.zip
 workspace_a.zip
 /src/main/resources/authentication.xml
+.env
+*.out
