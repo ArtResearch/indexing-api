@@ -48,7 +48,6 @@ public class Main {
 //            args = new String [] {"-i", "-type", "photographers", "-core", "photographers_v5"};
 //            args = new String [] {"-i", "-type", "repositories", "-core", "repositories_v5"};
 //            args = new String [] {"-i", "-type", "photos", "-core", "photos_v5"};
-//          args = new String [] {"-d"}
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);
         } catch (ParseException ex) {
@@ -58,59 +57,56 @@ public class Main {
     
     private static void createOptionsList(){
         Option index = new Option("i", "index", false,"Flag to index data.");
+        Option download = new Option("d", "download", false,"Flag to download data.");
+        Option upload = new Option("u", "upload", false,"Flag to upload data.");
         Option type = new Option("t", "type", true,"Type to index: -t [type].");
-        Option core = new Option("c", "core", true,"Core to add data: -c [core_name].");
-        Option weights = new Option("w", "weights", false, "Flag to change weigths.");
-        Option download = new Option("d", "download", false, "Flag to download queries.");
+        Option core = new Option("c", "core", true,"Core to add data: -c [coreName].");
+        
+        type.setRequired(true);
+        
         options.addOption(index)
-               .addOption(type)
-               .addOption(core)
-               .addOption(weights)
-               .addOption(download);
+                .addOption(download)
+                .addOption(upload)
+                .addOption(type)
+                .addOption(core);
     }
 
     private static void handleCommandLine(CommandLine line) throws IOException{
        
-        if(line.hasOption("i") && line.hasOption("type")){
+        if(line.hasOption("type")){
             Logger.getLogger(Main.class.getName()).log(Level.INFO, "Indexing Processing Started");
             IndexGenerator indexGenerator = null;
-            if(line.hasOption("core"))
-                Resources.setSolrCore(line.getOptionValue("core"));
             /*Index Resources for artists*/
             if (line.getOptionValue("t").equals("artists")) 
                 indexGenerator = ArtistIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));                
-            
             /*Index Resources for work*/
             if (line.getOptionValue("t").equals("artworks"))
                 indexGenerator = WorkIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
-
             /*Index Resources for photos*/
             if (line.getOptionValue("t").equals("photos"))
                 indexGenerator = PhotoIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
- 
             /*Index Resources for photographers*/
             if (line.getOptionValue("t").equals("photographers"))
                 indexGenerator = PhotographersIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
-            
              /*Index Resources for repositories*/
             if (line.getOptionValue("t").equals("repositories"))
                 indexGenerator = RepositoriesIndexGenerator.create(new File(Resources.CONFIGURATION_FILE));
             
-            /*Download queries else perform usual functionality*/
-            if (line.hasOption("d"))            
-               indexGenerator.downloadQueries();            
-            else
-               indexGenerator.indexResources(Resources.SOLR_CORE);
-    
-        } else if(line.hasOption("w")){
-            Logger.getLogger(Main.class.getName()).log(Level.INFO, "Change weights Processing Started");
-            try {
-                Utils.change_weigths();
-            } catch (FileNotFoundException | org.json.simple.parser.ParseException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            if (indexGenerator!=null){
+                // Core
+                if (line.hasOption("c"))
+                    Resources.setSolrCore(line.getOptionValue("core"));
+                
+                // Process
+                if (line.hasOption("d"))
+                    indexGenerator.downloadResources();
+                else if (line.hasOption("u"))
+                    indexGenerator.uploadResources();
+                else if (line.hasOption("i"))
+                    indexGenerator.indexResources();
             }
-        }
-        else{
+            
+        } else {
             printOptions();
         }
        Logger.getLogger(Main.class.getName()).log(Level.INFO, "Indexing Processing Completed");
