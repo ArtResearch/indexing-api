@@ -57,8 +57,8 @@ public class Main {
     
     private static void createOptionsList(){
         Option index = new Option("i", "index", false,"Flag to index data.");
-        Option download = new Option("d", "download", false,"Flag to index data.");
-        Option upload = new Option("u", "upload", false,"Flag to index data.");
+        Option download = new Option("d", "download", false,"Flag to download data.");
+        Option upload = new Option("u", "upload", false,"Flag to upload data.");
         Option type = new Option("t", "type", true,"Type to index: -t [type].");
         Option core = new Option("c", "core", true,"Core to add data: -c [coreName].");
         
@@ -103,7 +103,7 @@ public class Main {
                 else if (line.hasOption("u"))
                     indexGenerator.uploadResources();
                 else if (line.hasOption("i"))
-                    indexGenerator.downloadResources();
+                    indexGenerator.indexResources();
             }
             
         } else {

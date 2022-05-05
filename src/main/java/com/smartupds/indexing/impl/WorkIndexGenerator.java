@@ -23,6 +23,7 @@ public class WorkIndexGenerator implements IndexGenerator{
     public WorkIndexGenerator(File configurationFile){
         this.configurationFile = configurationFile;
     }
+    
     @Override
     public void downloadResources() {
         long start = System.nanoTime();

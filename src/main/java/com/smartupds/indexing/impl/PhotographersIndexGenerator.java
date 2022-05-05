@@ -24,6 +24,7 @@ public class PhotographersIndexGenerator  implements IndexGenerator{
         this.configurationFile = configurationFile;
     }
 
+    @Override
     public void downloadResources() {
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing photographers");
