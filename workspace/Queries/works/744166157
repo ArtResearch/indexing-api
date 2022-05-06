@@ -34,4 +34,4 @@ CONSTRUCT {
 	?subject crm:P67i_is_referred_to_by ?bibliography .
 	?bibliography crm:P2_has_type <http://vocab.getty.edu/aat/300435419>.
 	?bibliography rdfs:label ?value.
-}
+} LIMIT 1000000
