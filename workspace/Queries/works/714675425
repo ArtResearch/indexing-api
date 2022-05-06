@@ -34,6 +34,4 @@ CONSTRUCT {
   ?subject a cfc:work.
   ?subject <https://artresearch.net/resource/fr/Work_kept_by_Institution>|crm:P50_has_current_keeper ?repo.
   ?repo rdfs:label ?value.
-  FILTER NOT EXISTS {?subject crm:P74_has_current_or_former_residence|crm:P55_has_current_location ?place.}
-  FILTER NOT EXISTS {?repo crm:P74_has_current_or_former_residence ?place.}
 }
