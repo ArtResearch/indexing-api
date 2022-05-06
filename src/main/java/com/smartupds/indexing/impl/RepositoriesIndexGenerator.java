@@ -41,7 +41,7 @@ public class RepositoriesIndexGenerator  implements IndexGenerator{
     public void uploadResources() {
         long start = System.nanoTime();
         Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "START: Updating repositories index");
-        Utils.updateSolrIndex(Resources.TYPE_REPOSITORIES,Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON, Resources.SOLR_CORE);
+        Utils.updateSolrIndex(Resources.TYPE_REPOSITORIES,Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED_SPLIT, Resources.SOLR_CORE);
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
         Logger.getLogger(RepositoriesIndexGenerator.class.getName()).log(Level.INFO, "FINISH: Indexing repositories completed in {0} secs", time);
