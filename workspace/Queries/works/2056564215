@@ -31,8 +31,7 @@ CONSTRUCT {
 }WHERE {	
   ?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
-  ?subject a cfc:work.
-  ?subject <https://artresearch.net/resource/custom/fr/Work_kept_by_Institution>|crm:P50_has_current_keeper ?repo.
+  ?subject crm:P50_has_current_keeper ?repo.
   ?repo rdfs:label ?repo_label.
   ?repo crm:P74_has_current_or_former_residence/rdfs:label ?place_label.
   BIND(CONCAT(?repo_label, " ", ?place_label ) AS ?value)

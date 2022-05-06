@@ -25,10 +25,14 @@ PREFIX Platform: <http://www.researchspace.org/resource/system/>
 PREFIX fc: <https://artresearch.net/resource/custom/fc/>
 PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
-	?subject rdfs:label ?value.
-	?subject <http://www.artresearch.net/custom/fieldLabel> "last_known_location".
-}WHERE{	
-  ?subject a <https://artresearch.net/resource/fc/work>.
-  ?s owl:sameAs ?subject.
-  ?s crm:P55_has_current_location/rdfs:label ?value.
+	?subject_p rdfs:label ?value.
+	?subject_p <http://www.artresearch.net/custom/fieldLabel> "last_known_location".
+
+}WHERE {	
+  ?subject owl:sameAs ?subject_p.
+	?subject_p a <https://artresearch.net/resource/fc/work>.
+  ?subject <https://artresearch.net/resource/custom/fr/Work_kept_by_Institution> ?repo.
+  ?repo rdfs:label ?repo_label.
+  ?repo crm:P74_has_current_or_former_residence/rdfs:label ?place_label.
+  BIND(CONCAT(?repo_label, " ", ?place_label ) AS ?value)
 } 

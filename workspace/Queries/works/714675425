@@ -27,11 +27,8 @@ PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "last_known_location".
-
-}WHERE {	
+} WHERE {	
   ?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
-  ?subject a cfc:work.
-  ?subject <https://artresearch.net/resource/fr/Work_kept_by_Institution>|crm:P50_has_current_keeper ?repo.
-  ?repo rdfs:label ?value.
+  ?subject <https://artresearch.net/resource/custom/fr/Work_kept_by_Institution>/rdfs:label ?value.
 }
