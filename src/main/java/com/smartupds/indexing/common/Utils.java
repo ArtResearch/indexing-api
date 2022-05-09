@@ -337,11 +337,11 @@ public class Utils {
 
     public static void split(String folderIN) {
         Logger.getLogger(Utils.class.getName()).log(Level.INFO, "Splitting Multiple Files Started.");
-        ArrayList<String> paths = Utils.listFilesForFolder(new File(folderIN));
+        ArrayList<String> json_paths = Utils.listFilesForFolder(new File(folderIN));
         int counter = 1;
-        for (String path : paths) {
+        for (String path : json_paths) {
             try {
-                double percent = (double) counter * 100 / paths.size();
+                double percent = (double) counter * 100 / json_paths.size();
                 path = path.trim();
 //                Splitter splitter = (Splitter) new TTLSplitter(path, Double.parseDouble("1"));
                 Splitter splitter = (Splitter) new JSONSplitter(path, Double.parseDouble("0.5"));
@@ -420,20 +420,20 @@ public class Utils {
 
     public static void merge(String json_dir, String merged_dir) {//(String json_dir, String merged_dir) {
         new File(merged_dir).mkdirs();
-        ArrayList<String> paths = Utils.listFilesForFolder(new File(json_dir));
+        ArrayList<String> json_paths = Utils.listFilesForFolder(new File(json_dir));
         JSONArray json_array = new JSONArray();
         JSONArray merged_array = new JSONArray();
-        for (String jsonfile : paths) {
-//            System.out.println("Jsonfiles "+jsonfile);
+        json_paths.forEach((jsonfile) -> {
+            //            System.out.println("Jsonfiles "+jsonfile);
             JSONParser parser = new JSONParser();
             try {
                 json_array.addAll((JSONArray) parser.parse(new FileReader(jsonfile)));
             } catch (IOException | ParseException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        });
         System.out.println("Json:  "+json_array.size());
-        Map entries = new HashMap<String, JSONObject>();
+        Map<String, JSONObject> entries = new HashMap<>();
 
         Iterator it = json_array.iterator();
         while (it.hasNext()) {
