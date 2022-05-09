@@ -31,5 +31,5 @@ CONSTRUCT {
 }WHERE{	
 	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
-	?subject (crm:P45_consists_of/<http://www.w3.org/2000/01/rdf-schema#label>)|(<https://artresearch.net/resource/fr/Work_consists_of_Material>/<http://www.w3.org/2000/01/rdf-schema#label>) ?value.
+	?subject crm:P45_consists_of/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

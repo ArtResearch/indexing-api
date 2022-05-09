@@ -30,5 +30,5 @@ CONSTRUCT {
 
 }WHERE{
 	?subject a <https://artresearch.net/resource/custom/fc/photo>.
-	?subject (crm:P45_consists_of|<https://artresearch.net/resource/fr/Photo_consists_of_Material>)/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
+	?subject crm:P45_consists_of/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }
