@@ -61,6 +61,7 @@ public class Main {
         Option upload = new Option("u", "upload", false,"Flag to upload data.");
         Option type = new Option("t", "type", true,"Type to index: -t [type].");
         Option core = new Option("c", "core", true,"Core to add data: -c [coreName].");
+        Option merge = new Option("m", "merge", false,"Merge");
         
         type.setRequired(true);
         
@@ -68,7 +69,8 @@ public class Main {
                 .addOption(download)
                 .addOption(upload)
                 .addOption(type)
-                .addOption(core);
+                .addOption(core)
+                .addOption(merge);
     }
 
     private static void handleCommandLine(CommandLine line) throws IOException{
@@ -97,13 +99,18 @@ public class Main {
                 if (line.hasOption("c"))
                     Resources.setSolrCore(line.getOptionValue("core"));
                 
-                // Process
-                if (line.hasOption("d"))
-                    indexGenerator.downloadResources();
-                else if (line.hasOption("u"))
-                    indexGenerator.uploadResources();
-                else if (line.hasOption("i"))
-                    indexGenerator.indexResources();
+                if (line.hasOption("m")){
+                    Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON, Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
+                    Utils.split(Resources.FOLDER_OUTPUT_INDEXING_PHOTOS_JSON_MERGED);
+                }else {
+                    // Process
+                    if (line.hasOption("d"))
+                        indexGenerator.downloadResources();
+                    else if (line.hasOption("u"))
+                        indexGenerator.uploadResources();
+                    else if (line.hasOption("i"))
+                        indexGenerator.indexResources();
+                }
             }
             
         } else {
