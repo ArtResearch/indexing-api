@@ -7,14 +7,12 @@ package com.smartupds.indexing;
 
 import com.smartupds.indexing.api.IndexGenerator;
 import com.smartupds.indexing.common.Resources;
-import com.smartupds.indexing.common.Utils;
 import com.smartupds.indexing.impl.ArtistIndexGenerator;
 import com.smartupds.indexing.impl.PhotoIndexGenerator;
 import com.smartupds.indexing.impl.PhotographersIndexGenerator;
 import com.smartupds.indexing.impl.RepositoriesIndexGenerator;
 import com.smartupds.indexing.impl.WorkIndexGenerator;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +36,7 @@ public class Main {
     
     public static void main(String[] args) throws IOException{
         try {
-            createOptionsList();
+//            createOptionsList();
             
 //            args = new String [] {"-i" , "-type", "artworks", "-core", "artworks_v6"};
 //            args = new String [] {"-d", "-i", "-type", "artists", "-core", "artists_v5"};
@@ -48,6 +46,7 @@ public class Main {
 //            args = new String [] {"-i", "-type", "photographers", "-core", "photographers_v5"};
 //            args = new String [] {"-i", "-type", "repositories", "-core", "repositories_v5"};
 //            args = new String [] {"-i", "-type", "photos", "-core", "photos_v5"};
+
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);
         } catch (ParseException ex) {

@@ -27,7 +27,6 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -263,56 +262,6 @@ public class Utils {
             }
         }
 
-//        new File(loc).mkdirs();
-////        ArrayList<String> listOfFiles = listFilesForFolder(new File(folder));
-//        String tmp = null;
-//        String tmpOrder = "";
-////        for(String file:listOfFiles) {
-////            if(tmp==null){
-////                tmp=file.substring(file.lastIndexOf("/")+1,file.indexOf("_part"));
-////                System.out.println(tmp);
-////            } else {
-////                System.out.println(tmp);
-////            }
-//            try {
-//                Logger.getLogger(Utils.class.getName()).log(Level.INFO,"Processing file : ".concat(file));
-//                JSONArray formats = new JSONArray();
-//                Dataset dataset = RDFDataMgr.loadDataset(file) ;
-//                Model model = dataset.getDefaultModel();
-//                StmtIterator list = model.listStatements();
-//                while(list.hasNext()){
-//                    JSONObject format = new JSONObject();
-//                    Statement stmt = list.next();
-//                    Property label = model.createProperty("http://www.w3.org/2000/01/rdf-schema#label");
-//                    Property order = model.createProperty("http://www.researchspace.org/resource/system/fields/order");
-//                    if(stmt.getPredicate().equals(label)){
-//                        format.put("uri",stmt.getSubject().getURI());
-//                        format.put("label_t",stmt.getObject().asLiteral().getString());
-//                        StmtIterator it = model.listStatements(null, order, (RDFNode) null);
-//                        String ordervalue = "";
-//                        if (it.hasNext()){
-//                            ordervalue = it.next().getLiteral().getString();
-//                            tmpOrder= ordervalue;
-//                        } else {
-//                            ordervalue = tmpOrder;
-//                        }
-//                        format.put("field_score",ordervalue);
-//                        formats.add(format);
-//                    }
-//                }
-//                Path path = Paths.get(loc+"/" + new File(file).getName().replace(".n3", ".json"));
-//                File json = new File(path.getParent().toString());
-//                json.mkdirs();
-//                BufferedWriter writer = Files.newBufferedWriter(path);
-//                writer.write(formats.toJSONString());
-//                writer.close();
-//                Logger.getLogger(Utils.class.getName()).log(Level.INFO,"Saved json file at : ".concat(path.toString()));
-//            } catch (UnsupportedEncodingException | FileNotFoundException ex) {
-//                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (IOException ex) {
-//                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-////        }
     }
 
     public static void splitSpecial(String folderIN) {
@@ -418,76 +367,81 @@ public class Utils {
         }
     }
 
-    public static void merge(String json_dir, String merged_dir) {//(String json_dir, String merged_dir) {
-        new File(merged_dir).mkdirs();
-        ArrayList<String> json_paths = Utils.listFilesForFolder(new File(json_dir));
-        JSONArray json_array = new JSONArray();
-        JSONArray merged_array = new JSONArray();
-        json_paths.forEach((jsonfile) -> {
-            //            System.out.println("Jsonfiles "+jsonfile);
+    public static void clean(String jsonDir, String cleanDir)
+    {
+        new File(cleanDir).mkdirs();
+        ArrayList<String> jsonPaths = Utils.listFilesForFolder(new File(jsonDir));
+//        System.out.println(jsonPaths.toString());
+        
+        jsonPaths.forEach((jsonfile) -> {
             JSONParser parser = new JSONParser();
             try {
-                json_array.addAll((JSONArray) parser.parse(new FileReader(jsonfile)));
+                JSONObject targetObject = new JSONObject();
+                JSONArray jsonContents = (JSONArray) parser.parse(new FileReader(jsonfile));
+                Iterator jsonContentsIt = jsonContents.iterator();
+                
+                while (jsonContentsIt.hasNext()) {                    
+                    JSONObject jsonObject = (JSONObject) jsonContentsIt.next();
+//                    Unique, puts uri only once
+                    targetObject.put("uri", jsonObject.get("uri"));
+//                    System.out.println("Contained json object: " + jsonObject.toJSONString());
+                    Iterator jsonKeysIt = jsonObject.keySet().iterator();                    
+                    while(jsonKeysIt.hasNext())
+                    {                        
+                        String key = (String) jsonKeysIt.next();
+                        System.out.println("Json key: " + key);
+                        if (! key.equals("field_score") && ! key.equals("id") && ! key.equals("uri")){
+                            if(targetObject.containsKey(key)) {
+                                 if (targetObject.get(key) instanceof JSONArray) {
+                                    ((JSONArray) targetObject.get(key)).add(jsonObject.get(key));
+                                } else {
+                                    JSONArray objArray = new JSONArray(); 
+                                    objArray.add(targetObject.get(key));
+                                    objArray.add(jsonObject.get(key));
+                                    targetObject.put(key, objArray);
+                                }
+                            }
+                            else {
+                                targetObject.put(key, jsonObject.get(key));
+                            }
+                        }  
+                    }
+                }
+//                System.out.println("Target object: " + targetObject.toJSONString());               
+                BufferedWriter writer = Files.newBufferedWriter(Paths.get(cleanDir + "/" + Paths.get(jsonfile).getFileName()));
+                writer.write(targetObject.toJSONString());
+                writer.close();
+//                System.out.println(Paths.get(jsonfile).getFileName());
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            }           
+        });
+    }
+        
+    public static void merge(String jsonDir, String mergedDir) {
+        new File(mergedDir).mkdirs();
+        ArrayList<String> json_paths = Utils.listFilesForFolder(new File(jsonDir));
+        JSONArray jsonArray = new JSONArray();
+        json_paths.forEach((jsonfile) -> {
+            JSONParser parser = new JSONParser();
+            try {
+                jsonArray.add((JSONObject) parser.parse(new FileReader(jsonfile)));
             } catch (IOException | ParseException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-        System.out.println("Json:  "+json_array.size());
-        Map<String, JSONObject> entries = new HashMap<>();
-
-        Iterator it = json_array.iterator();
-        while (it.hasNext()) {
-            JSONObject json_object = (JSONObject) it.next();
-            String key = json_object.get("uri").toString();
-            JSONObject existing = (JSONObject) entries.get(key);
-            if (existing == null) {
-                entries.put(key, json_object); // add a new json object
-//                System.out.println("KEY = " + key);
-//                System.out.println("JSON OBJECT = " + json_object.toJSONString());
-            } else {
-
-                Iterator ksitr = json_object.keySet().iterator();
-                while (ksitr.hasNext()) {
-                    String keyobject = (String) ksitr.next();
-                    if (!(keyobject.equals("uri") || keyobject.equals("field_score"))) {
-                        JSONArray obj_array = new JSONArray();
-                        if (existing.containsKey(keyobject)) {
-//                            System.out.println("KEY 1 = " + key);
-//                            System.out.println("BEFORE JSON OBJECT 1 = " + ((JSONObject)entries.get(key)).toJSONString());
-
-                            if (existing.get(keyobject) instanceof JSONArray) {
-                                ((JSONArray) existing.get(keyobject)).add(json_object.get(keyobject));
-                            } else {
-                                obj_array.add(existing.get(keyobject));
-                                obj_array.add(json_object.get(keyobject));
-                                existing.put(keyobject, obj_array);
-                            }
-
-                        } else {
-                            existing.put(keyobject, json_object.get(keyobject));
-                        }
-                    }
-                }
-
-//                System.out.println("JSON OBJECT = " + ((JSONObject)entries.get(key)).toJSONString());
-            }
-        }
-        Iterator keyset = entries.keySet().iterator();
-        while (keyset.hasNext()) {
-            JSONObject to_merge = (JSONObject) entries.get((String) keyset.next());
-            to_merge.put("id", to_merge.remove("uri"));
-            to_merge.remove("field_score");
-            merged_array.add(to_merge);
-        }
-
+        });        
         try {
-            BufferedWriter writer = Files.newBufferedWriter(Paths.get(merged_dir + "/merged.json"));
-            writer.write(merged_array.toJSONString());
+            BufferedWriter writer = Files.newBufferedWriter(Paths.get(mergedDir + "/merged.json"));
+            writer.write(jsonArray.toJSONString());
             writer.close();
         } catch (IOException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public static void change_weigths() throws FileNotFoundException, IOException, ParseException {

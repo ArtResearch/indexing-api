@@ -30,7 +30,8 @@ public class RepositoriesIndexGenerator  implements IndexGenerator{
         long start = System.nanoTime();
         Logger.getLogger(WorkIndexGenerator.class.getName()).log(Level.INFO,"START: Indexing repositories");
         Utils.downloadSubjectFieldsDir(this.configurationFile,Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_CONSTRUCT, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON, Resources.REPOSITORIES);
-        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED);
+        Utils.clean(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_CLEAN);
+        Utils.merge(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_CLEAN, Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED);
         Utils.split(Resources.FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_MERGED);
         long stop = System.nanoTime();
         long time = TimeUnit.SECONDS.convert(stop - start, TimeUnit.NANOSECONDS);
