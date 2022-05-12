@@ -1,8 +1,10 @@
-# indexing-api
+# indexing-api #
 
 Indexing API retrieves data from Pharos main categories and process them to create indexes in SOLR. Indexing has been implemented for artists, artworks & photos. It remains to be implemented for institutions, photographers and places.
 
-## Run indexing-api
+# Run indexing-api
+
+## Manual Run
 
 ### Download and build
 
@@ -43,3 +45,24 @@ Photos :
 ```bash
 $ java -jar target/indexing-api-0.1-assembly.jar -i -t photos -c [solr_core]
 ```
+
+## Automatic Run 
+
+Run the complete indexing process automaticly using the command below :
+
+```bash
+./scripts/index.sh
+```
+ or just the donwload process : 
+ 
+```bash
+./scripts/download.sh
+```
+ or just the upload process : 
+ 
+```bash
+./scripts/upload.sh
+```
+
+Before you do run them you must insert the correct solr cores in .env file based on the .env.template file.
+ 
