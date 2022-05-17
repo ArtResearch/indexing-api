@@ -8,6 +8,7 @@ package com.smartupds.indexing.common;
 import com.smartupds.indexing.api.Splitter;
 import com.smartupds.indexing.impl.JSONSplitter;
 import com.smartupds.indexing.impl.QueryData;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,12 +27,14 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Statement;
@@ -424,9 +427,11 @@ public class Utils {
         ArrayList<String> json_paths = Utils.listFilesForFolder(new File(json_dir));
         JSONArray json_array = new JSONArray();
         json_paths.forEach((jsonfile) -> {
-            JSONParser parser = new JSONParser();
+            
             try {
-                json_array.addAll((JSONArray) parser.parse(new FileReader(jsonfile)));
+                BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(new FileInputStream(jsonfile),StandardCharsets.UTF_8));
+                JSONParser parser = new JSONParser();
+                json_array.addAll((JSONArray) parser.parse(bufferedReader));
             } catch (IOException | ParseException ex) {
                 Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -434,21 +439,41 @@ public class Utils {
         json_paths.clear();
         
         Map<String,JSONObject> map = (Map<String,JSONObject>) json_array.stream().distinct().collect(Collectors.toMap(
-                json -> ((JSONObject)json).get("uri").toString(),
-                json-> {
-                    ((JSONObject)json).put("id", ((JSONObject)json).get("uri"));
-                    ((JSONObject)json).remove("uri");
-                    ((JSONObject)json).remove("field_score"); 
-                    return ((JSONObject)json);
-                }, 
-                (json1,json2) -> {
-                    ((JSONObject)json1).putAll(((JSONObject)json2));
-                    return ((JSONObject)json1);
-                }
+            json -> ((JSONObject)json).get("uri").toString(),
+            json -> {
+                ((JSONObject)json).put("id", ((JSONObject)json).get("uri"));
+                ((JSONObject)json).remove("uri");
+                ((JSONObject)json).remove("field_score"); 
+                return ((JSONObject)json);
+            }, 
+            (json1,json2) -> {
+                JSONObject merged = ((JSONObject)json2);
+                JSONObject source = ((JSONObject)json1);
+
+                source.forEach((obj_key,obj_value)->{
+                    if (merged.containsKey(obj_key) && !obj_key.equals("id")){
+                        if (merged.get(obj_key) instanceof JSONArray) {
+                            ((JSONArray) merged.get(obj_key)).add(((JSONObject)json1).get(obj_key));
+                        } else {
+                            JSONArray objArray = new JSONArray(); 
+                            objArray.add(merged.get(obj_key));
+                            if (source.get(obj_key) instanceof JSONArray)
+                                objArray.addAll((JSONArray)source.get(obj_key));
+                            else 
+                                objArray.add(source.get(obj_key));
+                            merged.put(obj_key,objArray);
+                        }
+                    } else if (!merged.containsKey(obj_key) && !obj_key.equals("id")){
+                        merged.put(obj_key,obj_value);
+                    }
+
+                });
+                return merged;
+            }
         ));
         json_array.clear();
         
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(merged_dir + "/merged.json"))) {
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(merged_dir + "/merged.json"), StandardCharsets.UTF_8)) {
             writer.write("[\n");
             map.forEach((key,value)->{
                 try {
