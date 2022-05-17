@@ -28,7 +28,7 @@ CONSTRUCT {
 	?subject rdfs:label ?value.
 	?subject <http://www.artresearch.net/custom/fieldLabel> "subject".
 
-} WHERE {	
+}WHERE {	
 	?subject a <https://artresearch.net/resource/fc/work>.
 	?subject <https://artresearch.net/resource/fr/Work_shows_Subject>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
 }

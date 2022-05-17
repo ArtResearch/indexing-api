@@ -28,7 +28,7 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "color_information".
 
-} WHERE {	
+}WHERE {	
 	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
 	$subject crm:P43_has_dimension ?dimension .

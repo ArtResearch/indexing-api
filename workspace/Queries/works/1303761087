@@ -31,4 +31,4 @@ CONSTRUCT {
   ?subject a <https://artresearch.net/resource/fc/work>.
   ?s owl:sameAs ?subject.
   ?s crm:P55_has_current_location/rdfs:label ?value.
-} 
+}

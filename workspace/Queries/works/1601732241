@@ -28,7 +28,7 @@ CONSTRUCT {
 	?subject_p rdfs:label ?value.
 	?subject_p <http://www.artresearch.net/custom/fieldLabel> "has_part".
 
-} WHERE {
+}WHERE {
 	?subject owl:sameAs ?subject_p.
 	?subject_p a <https://artresearch.net/resource/fc/work>.
  	$subject crm:P46_is_composed_of/<http://www.w3.org/2000/01/rdf-schema#label> ?value.

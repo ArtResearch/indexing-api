@@ -32,4 +32,4 @@ CONSTRUCT {
   ?subject a <https://artresearch.net/resource/fc/work>.
   ?s owl:sameAs ?subject.
   ?s crm:P74_has_current_or_former_residence/rdfs:label ?value.
-} 
+}
