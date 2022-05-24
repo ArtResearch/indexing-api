@@ -2,6 +2,10 @@
 
 Indexing API retrieves data from Pharos main categories and process them to create indexes in SOLR. Indexing has been implemented for artists, artworks & photos. It remains to be implemented for institutions, photographers and places.
 
+# Prerequisites 
+
+- [SOLR](https://solr.apache.org/) cores set up
+
 # Run indexing-api
 
 ## Manual Run
