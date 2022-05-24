@@ -20,9 +20,10 @@ $ cd indexing-api
 $ mvn clean package
 ```
 
-### Configuration file
+### Configuration files
 
-Update the configuration file with the proper sparql endpoint, username & password. Copy **src/main/resources/authentication.xml.template** to **src/main/resources/authentication.xml**.
+- Update the configuration file with the proper sparql endpoint, username & password. Copy **src/main/resources/authentication.xml.template** to **src/main/resources/authentication.xml**.
+- Update the configuration file for solr endpoint. Copy **src/main/resources/solr.xml.template** to **src/main/resources/solr.xml**.
 
 ### Options
 
@@ -54,7 +55,7 @@ $ java -jar target/indexing-api-0.1-assembly.jar -i -t photos -c [solr_core]
 
 ### Enviroment
 
-Copy .env.template to .env file and add the names of the cores for each main entity as they are set up in your SOLR database. Furthermore you need to set up the [Configuration file](#configuration-file).
+Copy .env.template to .env file and add the names of the cores for each main entity as they are set up in your SOLR database. Furthermore you need to set up the [Configuration files](#configuration-files).
 
 Build with :
 

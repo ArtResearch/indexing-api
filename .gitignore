@@ -8,3 +8,4 @@ workspace_a.zip
 /src/main/resources/authentication.xml
 .env
 *.out
+src/main/resources/solr.xml
