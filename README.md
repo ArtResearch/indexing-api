@@ -18,7 +18,7 @@ $ mvn clean package
 
 ### Configuration file
 
-Update the configuration file with the proper endpoint, username & password. The configuration file is located in src/main/resources/authentication.xml .
+Update the configuration file with the proper sparql endpoint, username & password. Copy **src/main/resources/authentication.xml.template** to **src/main/resources/authentication.xml**.
 
 ### Options
 
@@ -47,6 +47,16 @@ $ java -jar target/indexing-api-0.1-assembly.jar -i -t photos -c [solr_core]
 ```
 
 ## Automatic Run 
+
+### Enviroment
+
+Copy .env.template to .env file and add the names of the cores for each main entity as they are set up in your SOLR database. Furthermore you need to set up the [Configuration file](#configuration-file).
+
+Build with :
+
+```bash
+mvn clean package
+```
 
 Run the complete indexing process automaticly using the command below :
 
