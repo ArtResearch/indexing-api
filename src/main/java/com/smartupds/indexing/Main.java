@@ -7,14 +7,12 @@ package com.smartupds.indexing;
 
 import com.smartupds.indexing.api.IndexGenerator;
 import com.smartupds.indexing.common.Resources;
-import com.smartupds.indexing.common.Utils;
 import com.smartupds.indexing.impl.ArtistIndexGenerator;
 import com.smartupds.indexing.impl.PhotoIndexGenerator;
 import com.smartupds.indexing.impl.PhotographersIndexGenerator;
 import com.smartupds.indexing.impl.RepositoriesIndexGenerator;
 import com.smartupds.indexing.impl.WorkIndexGenerator;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +37,6 @@ public class Main {
     public static void main(String[] args) throws IOException{
         try {
             createOptionsList();
-            
 //            args = new String [] {"-i" , "-type", "artworks", "-core", "artworks_v6"};
 //            args = new String [] {"-d", "-i", "-type", "artists", "-core", "artists_v5"};
 //            args = new String [] {"-d", "-i", "-type", "photographers", "-core", "photographers_v5"};
@@ -102,8 +99,10 @@ public class Main {
                     indexGenerator.downloadResources();
                 else if (line.hasOption("u"))
                     indexGenerator.uploadResources();
-                else if (line.hasOption("i"))
+                else if (line.hasOption("i")){
+                    Resources.setSolrServer();
                     indexGenerator.indexResources();
+                }
             }
             
         } else {

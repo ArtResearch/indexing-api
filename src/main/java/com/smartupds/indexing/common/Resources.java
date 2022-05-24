@@ -5,6 +5,16 @@
  */
 package com.smartupds.indexing.common;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
 /**
  *
  * @author Manolis Fragiadoulakis <fragiadoulakis at smartupds.com>
@@ -79,6 +89,7 @@ public class Resources {
     public static final String FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON_FIXED = FOLDER_OUTPUT_INDEXING_REPOSITORIES_JSON + "/" + Resources.FIXED;
 
     public static final String CONFIGURATION_FILE = "./src/main/resources/authentication.xml";
+    public static final String SOLR_CONFIGURATION_FILE = "./src/main/resources/solr.xml";
 
     //RESERVED WORDS
     public static final String SELECT = "SELECT";
@@ -169,7 +180,7 @@ public class Resources {
 
 // SERVER
     public static String SOLR_CORE = "test";
-    public static final String SOLR_SERVER = "http://localhost:8983/solr/";
+    public static String SOLR_SERVER = "http://localhost:8983/solr/";
 
     // REQUESTS
     public static final String UPDATE_JSON = "/update/json";
@@ -195,6 +206,18 @@ public class Resources {
 
     public static void setSolrCore(String coreName) {
         SOLR_CORE = coreName;
+    }
+    
+    public static void setSolrServer() {
+        if (new File(Resources.SOLR_CONFIGURATION_FILE).exists()){
+            try {
+                SAXReader reader = new SAXReader();
+                reader.setEncoding("UTF-8");
+                SOLR_SERVER = reader.read(new FileInputStream(Resources.SOLR_CONFIGURATION_FILE)).getRootElement().elementText("endpoint");
+            } catch (DocumentException | FileNotFoundException ex) {
+                Logger.getLogger(Resources.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public static void setLabelQuery(String type, String addFilter) {
