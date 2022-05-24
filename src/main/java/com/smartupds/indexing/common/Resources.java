@@ -168,7 +168,6 @@ public class Resources {
             + "PREFIX cfc: <https://artresearch.net/resource/custom/fc/>\n";
 
 // SERVER
-//    public static final String SOLR_SERVER = "http://213.171.209.34:8983/solr/";
     public static String SOLR_CORE = "test";
     public static final String SOLR_SERVER = "http://localhost:8983/solr/";
 
