@@ -22,7 +22,7 @@ PREFIX crmdig: <http://www.ics.forth.gr/isl/CRMdig/>
 PREFIX User: <http://www.researchspace.org/resource/user/>
 PREFIX bds: <http://www.bigdata.com/rdf/search#>
 PREFIX Platform: <http://www.researchspace.org/resource/system/>
-PREFIX fc: <https://artresearch.net/resource/custom/fc/>
+PREFIX fc: <https://artresearch.net/resource/fc/>
 PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
 	?subject_p rdfs:label ?value.
