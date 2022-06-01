@@ -180,7 +180,7 @@ public class Resources {
 
 // SERVER
     public static String SOLR_CORE = "test";
-    public static String SOLR_SERVER = "http://localhost:8983/solr/";
+    public static String SOLR_SERVER = "https://solr.artresearch.net/solr/";
 
     // REQUESTS
     public static final String UPDATE_JSON = "/update/json";
