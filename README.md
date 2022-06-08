@@ -28,8 +28,10 @@ $ mvn clean package
 ### Options
 
 * **i [required]** (index) : flag to index resources.
+* **d [required]** (index) : flag to download resources and trasform to JSON documents.
+* **u [required]** (index) : flag to upload JSON documents resources to SOLR.
 * **t [required]** (type) : type to donwload and index ("artists", "artworks" & "photos" are the available types).
-* **c [required]** (core) : core that the json files would be imported to. Note: SOLR core is created beforehand, so make sure that the core exists before running the api.
+* **c [required]** (core) : core that the json files would be imported to. Note: SOLR core is created beforehand, so make sure that the core exists before running the api. Core name is required if full indexing or just upload is performed, but not required when just download is performed.
 
 ### Run
 
