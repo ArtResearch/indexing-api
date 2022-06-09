@@ -37,14 +37,15 @@ public class Main {
     public static void main(String[] args) throws IOException{
         try {
             createOptionsList();
-//            args = new String [] {"-i" , "-type", "artworks", "-core", "artworks_v6"};
+            // args = new String [] {"-u" , "-type", "artworks", "-core", "artworks_v8Test"};
+            // args = new String [] {"-d" , "-type", "artworks", "-core", "artworks_v6"};
 //            args = new String [] {"-d", "-i", "-type", "artists", "-core", "artists_v5"};
 //            args = new String [] {"-d", "-i", "-type", "photographers", "-core", "photographers_v5"};
 //            args = new String [] {"-d", "-i", "-type", "repositories", "-core", "repositories_v5"};
 //            args = new String [] {"-d", "-i", "-type", "photos", "-core", "photos_v5"};
 //            args = new String [] {"-i", "-type", "photographers", "-core", "photographers_v5"};
 //            args = new String [] {"-i", "-type", "repositories", "-core", "repositories_v5"};
-//            args = new String [] {"-i", "-type", "photos", "-core", "photos_v5"};
+        //    args = new String [] {"-i", "-type", "merge", "-core", "photos_v5"};
             CommandLine line = PARSER.parse(options, args);
             handleCommandLine(line);
         } catch (ParseException ex) {
@@ -97,9 +98,10 @@ public class Main {
                 // Process
                 if (line.hasOption("d"))
                     indexGenerator.downloadResources();
-                else if (line.hasOption("u"))
+                else if (line.hasOption("u")){
+                    Resources.setSolrServer();
                     indexGenerator.uploadResources();
-                else if (line.hasOption("i")){
+                } else if (line.hasOption("i")){
                     Resources.setSolrServer();
                     indexGenerator.indexResources();
                 }
