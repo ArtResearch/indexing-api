@@ -25,13 +25,12 @@ PREFIX Platform: <http://www.researchspace.org/resource/system/>
 PREFIX fc: <https://artresearch.net/resource/fc/>
 PREFIX cfc: <https://artresearch.net/resource/custom/fc/>
 CONSTRUCT {
-	?subject_p rdfs:label ?value.
-	?subject_p <http://www.artresearch.net/custom/fieldLabel> "bibliography".
+	?subject rdfs:label ?value.
+	?subject <http://www.artresearch.net/custom/fieldLabel> "gender".
 
-}WHERE {	
-	?subject owl:sameAs ?subject_p.
-	?subject_p a <https://artresearch.net/resource/fc/work>.
-	?subject crm:P67i_is_referred_to_by ?bibliography .
-	?bibliography crm:P2_has_type <http://vocab.getty.edu/aat/300435419>.
-	?bibliography rdfs:label ?value.
+}WHERE {
+  	?subject_og owl:sameAs ?subject.
+	?subject a <https://artresearch.net/resource/fc/photographer>.
+    $subject_og <https://artresearch.net/resource/fr/Person_has_Gender>/<http://www.w3.org/2000/01/rdf-schema#label> ?value.
+	FILTER (!CONTAINS(STR(?subject),"nypl"))
 }
